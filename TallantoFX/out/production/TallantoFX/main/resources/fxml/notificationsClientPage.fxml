@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="675.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="83.0" prefHeight="322.0" prefWidth="675.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Accordion layoutX="106.0" layoutY="101.0" />
+            <TabPane prefHeight="327.0" prefWidth="675.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="Заявки">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="298.0" prefWidth="675.0">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="№" />
+                                    <TableColumn prefWidth="130.0" text="Логин клиента" />
+                                    <TableColumn prefWidth="130.0" text="Имя клиента" />
+                                    <TableColumn prefWidth="339.0" text="Удобные дни" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Оплата">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="298.0" prefWidth="675.0">
+                                 <columns>
+                                    <TableColumn minWidth="2.0" prefWidth="38.0" text="№" />
+                                    <TableColumn prefWidth="130.0" text="Логин" />
+                                    <TableColumn minWidth="0.0" prefWidth="130.0" text="Имя" />
+                                    <TableColumn prefWidth="101.0" text="Статус" />
+                                    <TableColumn minWidth="0.0" prefWidth="100.0" text="Сумма" />
+                                    <TableColumn prefWidth="175.0" text="Подтверждение" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Жалобы">
+                     <content>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView prefHeight="298.0" prefWidth="675.0">
+                                 <columns>
+                                    <TableColumn minWidth="2.0" prefWidth="38.0" text="№" />
+                                    <TableColumn prefWidth="100.0" text="От кого" />
+                                    <TableColumn minWidth="0.0" prefWidth="100.0" text="На кого" />
+                                    <TableColumn prefWidth="100.0" text="Урок" />
+                                    <TableColumn minWidth="0.0" prefWidth="100.0" text="Тема" />
+                                    <TableColumn prefWidth="100.0" text="Статус" />
+                                    <TableColumn prefWidth="135.0" text="Подробнее" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="185.0" layoutY="-5.0" prefHeight="70.0" prefWidth="305.0" text="Уведомления" textFill="#f8f6f6" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="System Italic" size="48.0" />
+         </font>
+      </Label>
+      <Button layoutX="573.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="88.0" text="Назад">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
