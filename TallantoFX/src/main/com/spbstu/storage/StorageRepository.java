@@ -112,6 +112,7 @@ public User authenticateUser(String login, String password) throws DBConnectionE
         User user = getUser(login);
         if (!userMapper.authenticateUser(user, password))
         throw new IncorrectPasswordException();
+        else
         return user;
     } catch (UserNotFoundException | SQLException e) {
         throw new DBConnectionException();

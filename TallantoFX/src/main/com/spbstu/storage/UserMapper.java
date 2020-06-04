@@ -44,8 +44,7 @@ public class UserMapper implements UserMapperInterface<User> {
         ResultSet rs = extractUserStatement.executeQuery();
 
         if (!rs.next()) return false;
-
-        return password.equals(rs.getString("password"));
+        return password.equals(rs.getString("password").replaceAll("\\s+",""));
     }
 
     @Override

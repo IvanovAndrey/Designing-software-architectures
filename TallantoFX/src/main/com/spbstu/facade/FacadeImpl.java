@@ -1,11 +1,13 @@
 package main.com.spbstu.facade;
 
+import main.com.spbstu.exceptions.DBConnectionException;
+import main.com.spbstu.exceptions.UserNotFoundException;
 import main.com.spbstu.user.User;
 import main.com.spbstu.storage.StorageRepository;
 
 public class FacadeImpl implements Facade{
        private StorageRepository repository;
-
+        private User currentUser;
          public FacadeImpl() {
              repository = new StorageRepository();
          }
@@ -25,4 +27,21 @@ public class FacadeImpl implements Facade{
                  User usr = repository.getUser(user);
                  usr.signOut();
     }
+
+    @Override
+    public User getCurrentUser(String login) throws Exception {
+        return repository.getUser(login);
+    }
+
+   /* @Override
+    public String getUserName(String user) throws Exception {
+        return repository.getUser(user).getName();
+    }
+
+    @Override
+    public String getUserStatus(String user) throws Exception {
+        return repository.getUser(user).getStatus();
+    }*/
+
+
 }

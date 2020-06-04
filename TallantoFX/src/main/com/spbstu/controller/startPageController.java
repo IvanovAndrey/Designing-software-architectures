@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import main.com.spbstu.Main;
+import main.com.spbstu.user.User;
+
 import java.io.IOException;
 
 public class startPageController {
@@ -30,7 +32,18 @@ public class startPageController {
         }
         try {
             facade.authenticate(login, password);
-            Main.showClientView(login);
+            User user = facade.getCurrentUser(login);
+            String name = user.getName();
+            String status = user.getStatus();
+            if (status.equals("client")) {
+                Main.showClientView(login, name, status);
+            } else if (status.equals("admin")) {
+                Main.showClientView(login, name, status);
+            } else if (status.equals("teacher")) {
+                Main.showClientView(login, name, status);
+            }
+
+
         } catch (Exception e) {
             errorLabel.setText(e.getMessage());
         }
