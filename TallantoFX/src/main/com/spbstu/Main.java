@@ -48,7 +48,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/clientProfilePage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            clientProfilePageController uvc = loader.getController();
+            ClientProfilePageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
@@ -63,7 +63,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/adminProfilePage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            adminProfilePageController uvc = loader.getController();
+            AdminProfilePageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
@@ -80,7 +80,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/teacherProfilePage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            teacherProfilePageController uvc = loader.getController();
+            TeacherProfilePageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
@@ -108,7 +108,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/notificationsClientPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            notificationClientPageController uvc = loader.getController();
+            NotificationClientPageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 675, 405);
             mainStage.setScene(scene);
@@ -123,7 +123,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/notificationsAdminPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            notificationAdminPageController uvc = loader.getController();
+            NotificationAdminPageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 675, 405);
             mainStage.setScene(scene);
@@ -140,7 +140,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/notificationsTeacherPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            notificationTeacherPageController uvc = loader.getController();
+            NotificationTeacherPageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 675, 405);
             mainStage.setScene(scene);
@@ -157,7 +157,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/complaintPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = loader.load(Main.class.getResourceAsStream(fxmlFile));
-            complaintPageController uvc = loader.getController();
+            ComplaintPageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
@@ -173,7 +173,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/shedulePage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            schedulePageController uvc = loader.getController();
+            SchedulePageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
@@ -189,7 +189,7 @@ public class Main extends Application {
             String fxmlFile = "/main/resources/fxml/requestPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            requestPageController uvc = loader.getController();
+            RequestPageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
@@ -205,7 +205,7 @@ public class Main extends Application {
         String fxmlFile = "/main/resources/fxml/createLessonPage.fxml";
         FXMLLoader loader = new FXMLLoader();
         AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-        createLessonPageController uvc = loader.getController();
+        CreateLessonPageController uvc = loader.getController();
         uvc.setup(login, name, status);
         Scene scene = new Scene(root, 600, 400);
         mainStage.setScene(scene);

@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import main.com.spbstu.Main;
 import main.com.spbstu.facade.Facade;
 
-public class notificationAdminPageController {
+public class NotificationAdminPageController {
     private Facade facade = Main.facade;
     private String login;
     private String name;

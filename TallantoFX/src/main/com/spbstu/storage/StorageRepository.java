@@ -5,21 +5,26 @@ import main.com.spbstu.exceptions.IncorrectPasswordException;
 import main.com.spbstu.exceptions.UserAlreadyExistsException;
 import main.com.spbstu.exceptions.UserNotFoundException;
 import main.com.spbstu.project.Complaint;
+import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.project.ComplaintMapper;
+import main.com.spbstu.storage.project.RequestMapper;
 import main.com.spbstu.storage.user.UserMapper;
 import main.com.spbstu.user.User;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class StorageRepository {
 
     private static UserMapper userMapper;
     private static ComplaintMapper complaintMapper;
+    private static RequestMapper requestMapper;
     public StorageRepository() {
     try {
         if (userMapper == null) userMapper = new UserMapper();
         if (complaintMapper == null) complaintMapper = new ComplaintMapper();
+        if (requestMapper == null) requestMapper = new RequestMapper();
        /* if (projectMapper == null) projectMapper = new ProjectMapper(managerMapper);
         if (teamLeaderMapper == null) teamLeaderMapper = new TeamLeaderMapper(projectMapper);
         if (developerMapper == null) developerMapper = new DeveloperMapper(projectMapper);
@@ -55,59 +60,7 @@ public class StorageRepository {
             throw new DBConnectionException();
         }
     }
-/*
-    public Manager getManager(User user) throws EndBeforeStartException, DBConnectionException {
-        try {
-            return managerMapper.findByLogin(user.getLogin());
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
 
-    public TeamLeader getTeamLeader(User user) throws EndBeforeStartException, DBConnectionException {
-        try {
-            return teamLeaderMapper.findByLogin(user.getLogin());
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-
-    public Developer getDeveloper(User user) throws EndBeforeStartException, DBConnectionException {
-        try {
-            return developerMapper.findByLogin(user.getLogin());
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-
-    public Tester getTester(User user) throws EndBeforeStartException, DBConnectionException, UserAlreadyHasRoleException {
-        try {
-            return testerMapper.findByLogin(user.getLogin());
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-*/
-/*
-    public void authenticateUser(String login, String password) throws DBConnectionException, IncorrectPasswordException {
-        // replase UserNotFound exception with IncorrectPassword exception,
-        // so nobody can find out if login was correct or not
-        try {
-            getUser(login).signIn(password);
-        } catch (UserNotFoundException e) {
-            throw new IncorrectPasswordException();
-        }
-    }
-
-    public void authenticateUser(User user, String password) throws DBConnectionException, IncorrectPasswordException {
-        try {
-            if (!userMapper.authenticateUser(user, password))
-                throw new IncorrectPasswordException();
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-*/
 public User authenticateUser(String login, String password) throws DBConnectionException, IncorrectPasswordException {
     try {
         User user = getUser(login);
@@ -137,6 +90,21 @@ public User authenticateUser(String login, String password) throws DBConnectionE
             throw new DBConnectionException();
         }
     }
+
+    public void addRequest(int idUser, String datas, Date dateOdSend)
+            throws DBConnectionException  {
+        try {
+            if(!(requestMapper.findByIdUser(idUser) == null)){
+                Request request = new Request(0, idUser,"NEW", datas, dateOdSend);
+                requestMapper.updateRequest(request);
+            }else {
+            Request request = new Request(0, idUser,"NEW", datas, dateOdSend);
+            requestMapper.addRequest(request);}
+        } catch (SQLException e) {
+            throw new DBConnectionException();
+        }
+    }
+
 
 
 /*

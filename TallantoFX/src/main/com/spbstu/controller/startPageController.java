@@ -9,7 +9,7 @@ import main.com.spbstu.user.User;
 
 import java.io.IOException;
 
-public class startPageController {
+public class StartPageController {
     private Facade facade = Main.facade;
 
     @FXML private Label errorLabel;

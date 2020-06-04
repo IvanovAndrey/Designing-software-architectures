@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import main.com.spbstu.Main;
 import main.com.spbstu.facade.Facade;
 
-public class complaintPageController {
+public class ComplaintPageController {
     private Facade facade = Main.facade;
     private String login;
     private String name;

@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import main.com.spbstu.Main;
 import main.com.spbstu.facade.Facade;
 
-public class clientProfilePageController {
+public class ClientProfilePageController {
     private Facade facade = Main.facade;
     private String user;
     private String login;

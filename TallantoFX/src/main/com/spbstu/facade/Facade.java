@@ -3,6 +3,7 @@ package main.com.spbstu.facade;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.user.User;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 public interface Facade {
@@ -13,4 +14,5 @@ public interface Facade {
     //String getUserStatus(String user) throws Exception;
     User getCurrentUser(String login) throws Exception;
     void addComplaint(int idIncedent, String theme, String text) throws Exception;
+    void addRequest (int idUser, String dates, Date dateOfSend) throws Exception;
 }

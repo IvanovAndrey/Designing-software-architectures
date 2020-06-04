@@ -6,6 +6,7 @@ import main.com.spbstu.project.Complaint;
 import main.com.spbstu.user.User;
 import main.com.spbstu.storage.StorageRepository;
 
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class FacadeImpl implements Facade{
@@ -39,6 +40,11 @@ public class FacadeImpl implements Facade{
     @Override
     public void addComplaint(int idIncedent, String theme, String text) throws Exception{
             repository.addComplaint(idIncedent,theme,text);
+    }
+
+    @Override
+    public void addRequest(int idUser, String dates, Date dateOfSend) throws Exception {
+            repository.addRequest(idUser,dates,dateOfSend);
     }
 
 

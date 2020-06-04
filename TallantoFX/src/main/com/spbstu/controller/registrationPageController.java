@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 
 
 
-public class registrationPageController {
+public class RegistrationPageController {
     private Facade facade = Main.facade;
     @FXML private TextField loginField;
     @FXML private TextField nameField;
