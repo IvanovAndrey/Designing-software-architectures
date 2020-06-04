@@ -41,7 +41,7 @@
             <Font name="Arial Italic" size="12.0" />
          </font>
       </PasswordField>
-      <ChoiceBox fx:id="choiceBox" layoutX="175.0" layoutY="280.0" prefWidth="150.0" value="Клиент">
+      <ChoiceBox fx:id="choiceBox" layoutX="175.0" layoutY="280.0" prefWidth="150.0" value="client">
          <items>
             <FXCollections fx:factory="observableArrayList">
                <String fx:value="client" />

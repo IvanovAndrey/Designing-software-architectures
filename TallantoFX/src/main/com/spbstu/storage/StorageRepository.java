@@ -4,9 +4,10 @@ import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.IncorrectPasswordException;
 import main.com.spbstu.exceptions.UserAlreadyExistsException;
 import main.com.spbstu.exceptions.UserNotFoundException;
+import main.com.spbstu.project.Complaint;
+import main.com.spbstu.storage.project.ComplaintMapper;
+import main.com.spbstu.storage.user.UserMapper;
 import main.com.spbstu.user.User;
-
-import main.com.spbstu.exceptions.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,12 +15,12 @@ import java.sql.SQLException;
 public class StorageRepository {
 
     private static UserMapper userMapper;
-
+    private static ComplaintMapper complaintMapper;
     public StorageRepository() {
     try {
         if (userMapper == null) userMapper = new UserMapper();
-       /* if (managerMapper == null) managerMapper = new ManagerMapper();
-        if (projectMapper == null) projectMapper = new ProjectMapper(managerMapper);
+        if (complaintMapper == null) complaintMapper = new ComplaintMapper();
+       /* if (projectMapper == null) projectMapper = new ProjectMapper(managerMapper);
         if (teamLeaderMapper == null) teamLeaderMapper = new TeamLeaderMapper(projectMapper);
         if (developerMapper == null) developerMapper = new DeveloperMapper(projectMapper);
         if (testerMapper == null) testerMapper = new TesterMapper(projectMapper);*/
@@ -118,35 +119,27 @@ public User authenticateUser(String login, String password) throws DBConnectionE
         throw new DBConnectionException();
     }
 }
+
+    public void addComplaint(int idIncedent, String theme, String text)
+            throws DBConnectionException  {
+        try {
+            Complaint complaint = new Complaint(0, idIncedent, theme, text);
+            complaintMapper.addComplaint(complaint);
+        } catch (SQLException e) {
+            throw new DBConnectionException();
+        }
+    }
+
+    public Complaint getComplaint(int idIncedent) throws DBConnectionException {
+        try {
+            return complaintMapper.findByIdIncedent(idIncedent);
+        } catch (SQLException e) {
+            throw new DBConnectionException();
+        }
+    }
+
+
 /*
-    public Project addProject(String name, Manager manager)
-            throws DBConnectionException, ProjectAlreadyExistsException, EndBeforeStartException {
-        Project project = new Project(name, manager);
-        try {
-            if (projectMapper.findByName(name) != null) throw new ProjectAlreadyExistsException(name);
-            projectMapper.update(project);
-            return project;
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-
-    public Project getProject(String name) throws DBConnectionException, EndBeforeStartException {
-        try {
-            return projectMapper.findByName(name);
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-
-    public Project getProject(int id) throws DBConnectionException, EndBeforeStartException {
-        try {
-            return projectMapper.findByID(id);
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        }
-    }
-
     public void clear() {
         userMapper.clear();
         managerMapper.clear();

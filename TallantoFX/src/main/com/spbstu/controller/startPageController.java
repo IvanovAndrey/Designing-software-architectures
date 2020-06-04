@@ -38,9 +38,9 @@ public class startPageController {
             if (status.equals("client")) {
                 Main.showClientView(login, name, status);
             } else if (status.equals("admin")) {
-                Main.showClientView(login, name, status);
+                Main.showAdminView(login, name, status);
             } else if (status.equals("teacher")) {
-                Main.showClientView(login, name, status);
+                Main.showTeacherView(login, name, status);
             }
 
 

@@ -34,7 +34,7 @@ public class clientProfilePageController {
 
     @FXML
     private void onClickNotificationButton() {
-        Main.notificationClientView();
+        Main.notificationClientView(login, name, status);
     }
 
     @FXML
@@ -43,7 +43,7 @@ public class clientProfilePageController {
     }
     @FXML
     private void onClickScheduleButton() {
-        Main.scheduleView();
+        Main.scheduleView(login, name, status);
     }
     @FXML
     private void onClickExitButton() {
@@ -51,6 +51,6 @@ public class clientProfilePageController {
     }
     @FXML
     private void onClickRequestButton() {
-        Main.requestView();
+        Main.requestView(login, name, status);
     }
 }
