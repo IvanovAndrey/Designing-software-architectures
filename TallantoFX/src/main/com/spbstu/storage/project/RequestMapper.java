@@ -58,7 +58,6 @@ public class RequestMapper {
         return true;
     }
 
-//UPDATE REQUESTS set status = 'CLOSED', dates = 'ПН % ВТ % СР % ЧТ', date_of_send= '2020-6-4' WHERE id_user = 2;
 
     public void updateRequest(Request request) throws SQLException{
         String updateSQL = "UPDATE REQUESTS set status = ?, dates = ?, date_of_send= ? WHERE id_user = ?;";
