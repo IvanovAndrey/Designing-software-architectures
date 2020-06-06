@@ -1,10 +1,13 @@
 package main.com.spbstu.facade;
 
 import main.com.spbstu.project.Complaint;
+import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Request;
 import main.com.spbstu.user.User;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public interface Facade {
     void addUser(String login, String name, String role, String password) throws Exception;
@@ -19,4 +22,8 @@ public interface Facade {
     Date dateConversion(String date);
     boolean addLesson (String teacher, String theme, String date) throws Exception;
     void addClientOnLesson(String teacher, String date, String client) throws Exception;
+
+    List<Lesson> getLessons() throws Exception;
+
+    List<Request> getRequests() throws Exception;
 }

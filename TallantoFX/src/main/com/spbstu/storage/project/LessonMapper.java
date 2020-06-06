@@ -2,10 +2,13 @@ package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.user.User;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LessonMapper {
@@ -44,7 +47,7 @@ public class LessonMapper {
 
     }
 
-    public Lesson findlessonById (int id) throws SQLException {
+    public Lesson findById (int id) throws SQLException {
         for (Lesson it : lessons) {
             if (it.getId()==(id))
                 return it;
@@ -65,6 +68,20 @@ public class LessonMapper {
         lessons.add(newLesson);
 
         return newLesson;
+    }
+
+    public List<Lesson> findAll() throws SQLException {
+        List<Lesson> all = new ArrayList<>();
+
+        String lessonSelectStatement = "SELECT id FROM lessons;";
+        Statement extractLessonStatement = connection.createStatement();
+        ResultSet rs = extractLessonStatement.executeQuery(lessonSelectStatement);
+
+        while (rs.next()) {
+            all.add(findById(rs.getInt("id")));
+        }
+
+        return all;
     }
 }
 

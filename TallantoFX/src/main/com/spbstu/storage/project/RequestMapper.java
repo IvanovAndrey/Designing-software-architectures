@@ -1,12 +1,15 @@
 package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.Complaint;
+import main.com.spbstu.project.Lesson;
 import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.DataGateway;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class RequestMapper {
@@ -67,6 +70,41 @@ public class RequestMapper {
         updateStatus.setDate(3, request.getDateOfSend());
         updateStatus.setInt(4, request.getId());
         updateStatus.execute();
+    }
+
+    public Request findById (int id) throws SQLException {
+        for (Request it : requests) {
+            if (it.getId()==(id))
+                return it;
+        }
+
+        String requestsSelectStatement = "SELECT * FROM requests WHERE id = ?;";
+        PreparedStatement extractRequestsStatement = connection.prepareStatement(requestsSelectStatement);
+        extractRequestsStatement.setInt(1, id);
+        ResultSet rs = extractRequestsStatement.executeQuery();
+
+        if (!rs.next()) return null;
+        String status = rs.getString("status");
+        int idUser = rs.getInt("id_user");
+        String dates = rs.getString("dates");
+        Date dateOfSend = rs.getDate("date_of_send");
+        Request newRequest = new Request(id, idUser, status, dates, (java.sql.Date) dateOfSend);
+        requests.add(newRequest);
+
+        return newRequest;
+    }
+    public List<Request> findAll() throws SQLException {
+        List<Request> all = new ArrayList<>();
+
+        String requestSelectStatement = "SELECT id FROM requests;";
+        Statement extractRequestStatement = connection.createStatement();
+        ResultSet rs = extractRequestStatement.executeQuery(requestSelectStatement);
+
+        while (rs.next()) {
+            all.add(findById(rs.getInt("id")));
+        }
+
+        return all;
     }
 }
 

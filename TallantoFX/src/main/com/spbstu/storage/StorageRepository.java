@@ -17,6 +17,7 @@ import main.com.spbstu.user.User;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 public class StorageRepository {
 
@@ -25,22 +26,23 @@ public class StorageRepository {
     private static RequestMapper requestMapper;
     private static LessonMapper lessonMapper;
     private static ClientsOnLessonMapper clientsOnLessonMapper;
-    public StorageRepository() {
-    try {
-        if (userMapper == null) userMapper = new UserMapper();
-        if (complaintMapper == null) complaintMapper = new ComplaintMapper();
-        if (requestMapper == null) requestMapper = new RequestMapper();
-        if (lessonMapper == null) lessonMapper = new LessonMapper();
-        if (clientsOnLessonMapper == null) clientsOnLessonMapper = new ClientsOnLessonMapper();
 
-    } catch (
-    SQLException e) {
-        e.printStackTrace();
-    } catch (
-    IOException e) {
-        e.printStackTrace();
+    public StorageRepository() {
+        try {
+            if (userMapper == null) userMapper = new UserMapper();
+            if (complaintMapper == null) complaintMapper = new ComplaintMapper();
+            if (requestMapper == null) requestMapper = new RequestMapper();
+            if (lessonMapper == null) lessonMapper = new LessonMapper();
+            if (clientsOnLessonMapper == null) clientsOnLessonMapper = new ClientsOnLessonMapper();
+
+        } catch (
+                SQLException e) {
+            e.printStackTrace();
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
     public void addUser(String login, String name, String status, String password)
             throws UserAlreadyExistsException, DBConnectionException {
@@ -65,31 +67,32 @@ public class StorageRepository {
         }
     }
 
-public User authenticateUser(String login, String password) throws DBConnectionException, IncorrectPasswordException {
-    try {
-        User user = getUser(login);
-        if (!userMapper.authenticateUser(user, password))
-        throw new IncorrectPasswordException();
-        else
-        return user;
-    } catch (UserNotFoundException | SQLException e) {
-        throw new DBConnectionException();
+    public User authenticateUser(String login, String password) throws DBConnectionException, IncorrectPasswordException {
+        try {
+            User user = getUser(login);
+            if (!userMapper.authenticateUser(user, password))
+                throw new IncorrectPasswordException();
+            else
+                return user;
+        } catch (UserNotFoundException | SQLException e) {
+            throw new DBConnectionException();
+        }
     }
-}
 
-public boolean isUserExist (String login) throws DBConnectionException{
-    try {
-        if (!(userMapper.findByLogin(login) == null))
-            return true;
-        else
-            return false;
-    } catch (SQLException e) {
-        e.printStackTrace();
+    public boolean isUserExist(String login) throws DBConnectionException {
+        try {
+            if (!(userMapper.findByLogin(login) == null))
+                return true;
+            else
+                return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
-    return false;
-}
+
     public void addComplaint(int idIncedent, String theme, String text)
-            throws DBConnectionException  {
+            throws DBConnectionException {
         try {
             Complaint complaint = new Complaint(0, idIncedent, theme, text);
             complaintMapper.addComplaint(complaint);
@@ -107,30 +110,31 @@ public boolean isUserExist (String login) throws DBConnectionException{
     }
 
     public void addRequest(int idUser, String datas, Date dateOdSend)
-            throws DBConnectionException  {
+            throws DBConnectionException {
         try {
-            if(!(requestMapper.findByIdUser(idUser) == null)){
-                Request request = new Request(0, idUser,"NEW", datas, dateOdSend);
+            if (!(requestMapper.findByIdUser(idUser) == null)) {
+                Request request = new Request(0, idUser, "NEW", datas, dateOdSend);
                 requestMapper.updateRequest(request);
-            }else {
-            Request request = new Request(0, idUser,"NEW", datas, dateOdSend);
-            requestMapper.addRequest(request);}
+            } else {
+                Request request = new Request(0, idUser, "NEW", datas, dateOdSend);
+                requestMapper.addRequest(request);
+            }
         } catch (SQLException e) {
             throw new DBConnectionException();
         }
 
     }
 
-    public void addLesson (int idTeacher, String theme, Date dateOfLesson )throws DBConnectionException{
+    public void addLesson(int idTeacher, String theme, Date dateOfLesson) throws DBConnectionException {
         try {
-                Lesson lesson = new Lesson(0, idTeacher, theme ,"", "OPEN", dateOfLesson);
-                lessonMapper.addLesson(lesson);
+            Lesson lesson = new Lesson(0, idTeacher, theme, "", "OPEN", dateOfLesson);
+            lessonMapper.addLesson(lesson);
         } catch (SQLException e) {
             throw new DBConnectionException();
         }
     }
 
-    public void addClientOnLesson (int idLesson, int idClient) throws DBConnectionException {
+    public void addClientOnLesson(int idLesson, int idClient) throws DBConnectionException {
         try {
             clientsOnLessonMapper.addClientsOnLesson(idLesson, idClient);
         } catch (SQLException e) {
@@ -138,32 +142,41 @@ public boolean isUserExist (String login) throws DBConnectionException{
         }
     }
 
-    public Lesson findlessonById (int id) throws  DBConnectionException {
-        try{
-        return lessonMapper.findlessonById(id);}
-        catch (SQLException e){
+    public Lesson findlessonById(int id) throws DBConnectionException {
+        try {
+            return lessonMapper.findById(id);
+        } catch (SQLException e) {
             throw new DBConnectionException();
         }
     }
 
     public int findIDLesson(int idTeacher, java.sql.Date date) throws DBConnectionException {
-        try{
-            return lessonMapper.findIDLesson(idTeacher, date);}
-        catch (SQLException e){
+        try {
+            return lessonMapper.findIDLesson(idTeacher, date);
+        } catch (SQLException e) {
             throw new DBConnectionException();
         }
     }
 
     public boolean isLessonExist(int idTeacher, java.sql.Date date) throws DBConnectionException {
-        try{
-            lessonMapper.findIDLesson(idTeacher, date);
-            return true;}
-        catch (SQLException e){
+        try {
+            if(lessonMapper.findIDLesson(idTeacher, date) == null)
             return false;
+            else
+                return true;
+        } catch (SQLException e) {
+            throw new DBConnectionException();
         }
     }
-}
 
+    public List<Lesson> getLessons() throws SQLException {
+        return lessonMapper.findAll();
+    }
+
+    public List<Request> getRequests() throws SQLException {
+        return requestMapper.findAll();
+    }
+}
 /*
     public void clear() {
         userMapper.clear();

@@ -3,6 +3,8 @@ package main.com.spbstu.facade;
 import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.UserNotFoundException;
 import main.com.spbstu.project.Complaint;
+import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Request;
 import main.com.spbstu.user.User;
 import main.com.spbstu.storage.StorageRepository;
 
@@ -11,6 +13,7 @@ import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.List;
 
 public class FacadeImpl implements Facade{
        private StorageRepository repository;
@@ -98,6 +101,15 @@ public class FacadeImpl implements Facade{
         repository.addClientOnLesson(id, userClient.getId());
     }
 
+    @Override
+    public List<Lesson> getLessons() throws Exception {
+        return repository.getLessons();
+    }
+
+    @Override
+    public List<Request> getRequests() throws Exception {
+        return repository.getRequests();
+    }
 
    /* @Override
     public String getUserName(String user) throws Exception {

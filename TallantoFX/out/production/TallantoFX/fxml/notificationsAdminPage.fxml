@@ -21,12 +21,14 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="298.0" prefWidth="675.0">
+                              <TableView fx:id="requestTeacherTable" prefHeight="298.0" prefWidth="675.0">
                                  <columns>
-                                    <TableColumn prefWidth="75.0" text="№" />
-                                    <TableColumn prefWidth="130.0" text="Логин учителя" />
-                                    <TableColumn prefWidth="130.0" text="Имя учителя" />
-                                    <TableColumn prefWidth="338.0" text="Удобные дни" />
+                                    <TableColumn fx:id="colId" prefWidth="75.0" text="№" />
+                                    <TableColumn fx:id="colLogin" prefWidth="130.0" text="Логин учителя" />
+                                    <TableColumn fx:id="colName" prefWidth="130.0" text="Имя учителя" />
+                                    <TableColumn fx:id="colDays" prefWidth="117.0" text="Удобные дни" />
+                                    <TableColumn fx:id="colDate" prefWidth="117.0" text="Дата отправки" />
+                                    <TableColumn fx:id="colStatus" prefWidth="117.0" text="Статус" />
                                  </columns>
                               </TableView>
                            </children>
