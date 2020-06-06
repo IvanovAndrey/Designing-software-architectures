@@ -1,4 +1,4 @@
-package com.spbstu.config;
+package main.com.spbstu.config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

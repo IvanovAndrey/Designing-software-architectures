@@ -215,5 +215,22 @@ public class Main extends Application {
         e.printStackTrace();
     }
     }
+
+    public static void lessonView(String login, String name, String status) {
+        try {
+            String fxmlFile = "/main/resources/fxml/lessonPage.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
+            LessonPageController uvc = loader.getController();
+            uvc.setup(login, name, status);
+            Scene scene = new Scene(root, 600, 400);
+            mainStage.setScene(scene);
+        } catch(
+                IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 }
 

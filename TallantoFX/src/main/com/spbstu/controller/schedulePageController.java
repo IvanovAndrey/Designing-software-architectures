@@ -79,7 +79,7 @@ public class SchedulePageController {
                         btn.getStyleClass().add("btn-default");
                             btn.setOnAction(event -> {
                                 Lesson lesson = getTableView().getItems().get(getIndex());
-                                Main.showStartView();
+                                Main.lessonView(login, name, status);
                             });
                             setGraphic(btn);
                             setText(null);

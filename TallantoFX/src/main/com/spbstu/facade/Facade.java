@@ -14,8 +14,6 @@ public interface Facade {
     void authenticate(String login, String password) throws Exception;
     boolean isUserExist (String login) throws Exception;
     void signOut(String user) throws Exception;
-    //String getUserName(String user) throws Exception;
-    //String getUserStatus(String user) throws Exception;
     User getCurrentUser(String login) throws Exception;
     void addComplaint(int idIncedent, String theme, String text) throws Exception;
     void addRequest (int idUser, String dates, Date dateOfSend) throws Exception;

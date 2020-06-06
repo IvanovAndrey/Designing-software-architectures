@@ -177,32 +177,5 @@ public class StorageRepository {
         return requestMapper.findAll();
     }
 }
-/*
-    public void clear() {
-        userMapper.clear();
-        managerMapper.clear();
-        projectMapper.clear();
-        teamLeaderMapper.clear();
-        developerMapper.clear();
-        testerMapper.clear();
-    }
 
-    public void update() throws SQLException {
-        userMapper.update();
-        managerMapper.update();
-        projectMapper.update();
-        teamLeaderMapper.update();
-        developerMapper.update();
-        testerMapper.update();
-    }
-
-    synchronized public void drop() throws DBConnectionException {
-        try {
-            DataGateway.getInstance().dropAll();
-        } catch (SQLException e) {
-            throw new DBConnectionException();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 
