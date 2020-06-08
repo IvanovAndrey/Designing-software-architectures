@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import main.com.spbstu.project.ClientsOnLessons;
+import main.com.spbstu.project.Lesson;
 
 import java.io.IOException;
 
@@ -216,18 +218,47 @@ public class Main extends Application {
     }
     }
 
-    public static void lessonView(String login, String name, String status) {
+    public static void lessonView(String login, String name, String status, Lesson lesson) throws Exception {
         try {
             String fxmlFile = "/main/resources/fxml/lessonPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
             LessonPageController uvc = loader.getController();
-            uvc.setup(login, name, status);
+            uvc.setup(login, name, status, lesson);
             Scene scene = new Scene(root, 600, 400);
             mainStage.setScene(scene);
         } catch(
                 IOException e)
         {
+            e.printStackTrace();
+        }
+    }
+    public static void clientOnLessonView(String login, String name, String status, Lesson lesson, ClientsOnLessons col) throws Exception {
+        try {
+            String fxmlFile = "/main/resources/fxml/clientOnLessonPage.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
+            ClientOnLessonPageController uvc = loader.getController();
+            uvc.setup(login, name, status, lesson, col);
+            Scene scene = new Scene(root, 600, 400);
+            mainStage.setScene(scene);
+        } catch(
+                IOException e)
+        {
+            e.printStackTrace();
+        }}
+
+    public static void lessonClientView(String login, String name, String status, Lesson lesson) {
+        try {
+            String fxmlFile = "/main/resources/fxml/lessonPageClient.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
+            LessonPageClientController uvc = loader.getController();
+            uvc.setup(login, name, status, lesson);
+            Scene scene = new Scene(root, 600, 400);
+            mainStage.setScene(scene);
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

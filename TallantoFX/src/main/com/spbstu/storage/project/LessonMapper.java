@@ -1,6 +1,7 @@
 package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.DataGateway;
 import main.com.spbstu.user.User;
 
@@ -82,6 +83,16 @@ public class LessonMapper {
         }
 
         return all;
+    }
+
+    public void update(Lesson lesson) throws SQLException{
+        String updateSQL = "UPDATE LESSONS set theme = ?, commentary = ?, status = ?  WHERE id = ?;";
+        PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
+        updateStatus.setString(1, lesson.getTheme());
+        updateStatus.setString(2, lesson.getCommentary());
+        updateStatus.setString(3, lesson.getStatus());
+        updateStatus.setInt(4, lesson.getId());
+        updateStatus.execute();
     }
 }
 

@@ -2,11 +2,13 @@ package main.com.spbstu.storage.project;
 
 import main.com.spbstu.exceptions.EndBeforeStartException;
 import main.com.spbstu.project.Complaint;
+import main.com.spbstu.project.Lesson;
 import main.com.spbstu.storage.DataGateway;
 import main.com.spbstu.user.User;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -58,5 +60,44 @@ public class ComplaintMapper {
 
         return newComplaint;
     }
+
+    private Complaint findById(int id) throws SQLException {
+        for (Complaint it : complaints) {
+            if (it.getId()==(id))
+                return it;
+        }
+
+        String complaintsSelectStatement = "SELECT * FROM COMPLAINTS WHERE id = ?;";
+        PreparedStatement extractComplaintsStatement = connection.prepareStatement(complaintsSelectStatement);
+        extractComplaintsStatement.setInt(1, id);
+        ResultSet rs = extractComplaintsStatement.executeQuery();
+
+        if (!rs.next()) return null;
+        int idIncedent = rs.getInt("id_incedent");
+        String theme = rs.getString("theme");
+        String text = rs.getString("text");
+
+        Complaint newComplaint = new Complaint(id, idIncedent, theme, text);
+        complaints.add(newComplaint);
+
+        return newComplaint;
+    }
+
+
+
+    public List<Complaint> findAll() throws SQLException {
+        List<Complaint> all = new ArrayList<>();
+
+        String complaintSelectStatement = "SELECT id FROM complaints;";
+        Statement extractComplaintStatement = connection.createStatement();
+        ResultSet rs = extractComplaintStatement.executeQuery(complaintSelectStatement);
+
+        while (rs.next()) {
+            all.add(findById(rs.getInt("id")));
+        }
+
+        return all;
+    }
+
 
 }

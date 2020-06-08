@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,30 +14,44 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.com.spbstu.controller.LessonPageController">
    <children>
-      <AnchorPane layoutY="78.0" prefHeight="326.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutY="78.0" prefHeight="328.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Accordion layoutX="106.0" layoutY="101.0" />
-            <Label layoutX="20.0" layoutY="15.0" text="Дата" />
-            <Label layoutX="300.0" layoutY="15.0" text="Тема" />
-            <Label layoutX="20.0" layoutY="40.0" text="Учитель" />
-            <Label layoutX="20.0" layoutY="101.0" prefHeight="17.0" prefWidth="72.0" text="Ученики" />
-            <Label layoutX="20.0" layoutY="65.0" prefHeight="17.0" prefWidth="125.0" text="Комментарий учителя" />
-            <TableView layoutY="126.0" prefHeight="200.0" prefWidth="600.0">
+            <Label layoutX="303.0" layoutY="66.0" text="Статус" />
+            <Label layoutX="19.0" layoutY="17.0" text="ID урока" />
+            <Label layoutX="380.0" layoutY="18.0" text="Преподаватель" />
+             <Label layoutX="208.0" layoutY="17.0" prefHeight="17.0" prefWidth="34.0" text="Дата" />
+             <Label layoutX="19.0" layoutY="66.0" prefHeight="17.0" prefWidth="34.0" text="Тема" />
+            <Label fx:id="teacherLabel" layoutX="497.0" layoutY="18.0" text="Перодаватель" />
+            <Label fx:id="idLabel" layoutX="93.0" layoutY="18.0" text="ID урока" />
+             <Label fx:id="dateLabel" layoutX="272.0" layoutY="17.0" text="Дата" />
+             <Label layoutX="272.0" layoutY="135.0" text="Ученики" />
+            <TextField fx:id="themeField" layoutX="66.0" layoutY="62.0" prefHeight="25.0" prefWidth="204.0" />
+            <TableView fx:id="clientsTable" layoutX="-3.0" layoutY="157.0" prefHeight="171.0" prefWidth="600.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="№" />
-                <TableColumn prefWidth="75.0" text="Имя" />
-                  <TableColumn prefWidth="75.0" text="Логин" />
-                  <TableColumn prefWidth="95.0" text="Присутствие" />
-                  <TableColumn prefWidth="279.0" text="Комментарий учителя" />
+                <TableColumn fx:id="colId" prefWidth="75.0" text="№" />
+                <TableColumn fx:id="colLogin" prefWidth="75.0" text="Логин" />
+                  <TableColumn fx:id="colName" prefWidth="75.0" text="Имя" />
+                  <TableColumn fx:id="colStatus" prefWidth="110.0" text="Статус" />
+                  <TableColumn fx:id="colComment" prefWidth="187.0" text="Комментарий" />
+                  <TableColumn fx:id="colBtnEdit" prefWidth="76.0" text="Изменить" />
               </columns>
             </TableView>
-            <TextField layoutX="151.0" layoutY="61.0" prefHeight="60.0" prefWidth="441.0" />
-            <Label layoutX="106.0" layoutY="17.0" text="Дата" />
-            <Label layoutX="408.0" layoutY="15.0" text="Тема" />
-            <Label layoutX="106.0" layoutY="40.0" text="Учитель" />
+            <Label layoutX="19.0" layoutY="95.0" prefHeight="40.0" prefWidth="85.0" text="Комментарий преподавателя" textOverrun="CLIP" wrapText="true" />
+            <TextField fx:id="commentField" layoutX="116.0" layoutY="103.0" prefHeight="25.0" prefWidth="444.0" />
+            <Label layoutX="272.0" layoutY="135.0" text="Ученики" />
+            <ChoiceBox fx:id="statusBox" layoutX="347.0" layoutY="62.0" prefWidth="150.0">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="OPEN" />
+                     <String fx:value="CLOSED" />
+                 </FXCollections>
+             </items>
+             </ChoiceBox>
+            <Button fx:id="applyButton" layoutX="512.0" layoutY="62.0" mnemonicParsing="false" onMouseClicked="#onClickApplyButton" text="Применить" />
          </children>
       </AnchorPane>
-      <Label layoutX="246.0" layoutY="-5.0" prefHeight="70.0" prefWidth="109.0" text="Урок" textFill="#f8f6f6" textOverrun="WORD_ELLIPSIS">
+      <Label layoutX="244.0" layoutY="10.0" prefHeight="70.0" prefWidth="112.0" text="Урок" textFill="#f8f6f6" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font name="System Italic" size="48.0" />
          </font>

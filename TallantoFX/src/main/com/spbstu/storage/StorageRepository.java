@@ -4,6 +4,7 @@ import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.IncorrectPasswordException;
 import main.com.spbstu.exceptions.UserAlreadyExistsException;
 import main.com.spbstu.exceptions.UserNotFoundException;
+import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.project.Request;
@@ -79,6 +80,15 @@ public class StorageRepository {
         }
     }
 
+    public User findById (int id) throws DBConnectionException {
+        try {
+            User user = userMapper.findByID(id);
+            if (user == null) throw new UserNotFoundException(user.getLogin());
+            return user;
+        } catch (SQLException | UserNotFoundException e) {
+            throw new DBConnectionException();
+        }
+    }
     public boolean isUserExist(String login) throws DBConnectionException {
         try {
             if (!(userMapper.findByLogin(login) == null))
@@ -169,12 +179,27 @@ public class StorageRepository {
         }
     }
 
+    public void updateLesson (Lesson lesson) throws Exception{
+        lessonMapper.update(lesson);
+    }
+    public void updateCON (ClientsOnLessons con) throws Exception{
+        clientsOnLessonMapper.update(con);
+    }
+
     public List<Lesson> getLessons() throws SQLException {
         return lessonMapper.findAll();
     }
 
     public List<Request> getRequests() throws SQLException {
         return requestMapper.findAll();
+    }
+
+    public List<Complaint> getComplaints() throws SQLException {
+        return complaintMapper.findAll();
+    }
+
+    public List<ClientsOnLessons> getCOL() throws SQLException {
+        return clientsOnLessonMapper.findAll();
     }
 }
 

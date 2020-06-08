@@ -2,6 +2,7 @@ package main.com.spbstu.facade;
 
 import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.UserNotFoundException;
+import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.project.Request;
@@ -37,6 +38,10 @@ public class FacadeImpl implements Facade{
         return repository.isUserExist(login);
     }
 
+    @Override
+    public String findLiginById(int id) throws Exception{
+             return repository.findById(id).getLogin();
+    }
     @Override
     public void signOut(String user) throws Exception {
                  User usr = repository.getUser(user);
@@ -110,16 +115,22 @@ public class FacadeImpl implements Facade{
     public List<Request> getRequests() throws Exception {
         return repository.getRequests();
     }
-
-   /* @Override
-    public String getUserName(String user) throws Exception {
-        return repository.getUser(user).getName();
-    }
-
     @Override
-    public String getUserStatus(String user) throws Exception {
-        return repository.getUser(user).getStatus();
-    }*/
+    public List<Complaint> getComplaints() throws Exception {
+        return repository.getComplaints();
+    }
+    @Override
+    public List<ClientsOnLessons> getCOL() throws Exception {
+        return repository.getCOL();
+    }
+   @Override
+   public void updateLesson(Lesson lesson) throws Exception {
+             repository.updateLesson(lesson);
+   }
+    @Override
+    public void updateCON(ClientsOnLessons con) throws Exception {
+        repository.updateCON(con);
+    }
 
 
 }

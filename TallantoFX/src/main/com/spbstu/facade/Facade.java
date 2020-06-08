@@ -1,5 +1,6 @@
 package main.com.spbstu.facade;
 
+import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.project.Request;
@@ -13,6 +14,9 @@ public interface Facade {
     void addUser(String login, String name, String role, String password) throws Exception;
     void authenticate(String login, String password) throws Exception;
     boolean isUserExist (String login) throws Exception;
+
+    String findLiginById(int id) throws Exception;
+
     void signOut(String user) throws Exception;
     User getCurrentUser(String login) throws Exception;
     void addComplaint(int idIncedent, String theme, String text) throws Exception;
@@ -24,4 +28,12 @@ public interface Facade {
     List<Lesson> getLessons() throws Exception;
 
     List<Request> getRequests() throws Exception;
+
+    List<Complaint> getComplaints() throws Exception;
+
+    List<ClientsOnLessons> getCOL() throws Exception;
+
+    void updateLesson(Lesson lesson) throws Exception;
+
+    void updateCON(ClientsOnLessons con) throws Exception;
 }

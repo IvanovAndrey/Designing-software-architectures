@@ -3,10 +3,7 @@ package main.com.spbstu.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import main.com.spbstu.Main;
@@ -26,6 +23,8 @@ public class SchedulePageController {
     @FXML private Button backButton;
     @FXML private Button nextButton;
     @FXML private Button prevButton;
+
+
 
     @FXML
     private TableView<Lesson> tableLessons;
@@ -79,7 +78,14 @@ public class SchedulePageController {
                         btn.getStyleClass().add("btn-default");
                             btn.setOnAction(event -> {
                                 Lesson lesson = getTableView().getItems().get(getIndex());
-                                Main.lessonView(login, name, status);
+                                try {
+                                    if(status.equals("client"))
+                                        Main.lessonClientView(login, name, status, lesson);
+                                    else
+                                        Main.lessonView(login, name, status, lesson);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             });
                             setGraphic(btn);
                             setText(null);

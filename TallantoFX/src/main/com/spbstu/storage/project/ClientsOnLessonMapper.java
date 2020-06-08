@@ -1,15 +1,18 @@
 package main.com.spbstu.storage.project;
 
+import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.storage.DataGateway;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ClientsOnLessonMapper {
-    private static Set<Lesson> lessons = new HashSet<>();
+    private static Set<ClientsOnLessons> clientsOnLessons = new HashSet<>();
     private Connection connection;
 
     public ClientsOnLessonMapper() throws SQLException, IOException {
@@ -18,10 +21,11 @@ public class ClientsOnLessonMapper {
     }
 
     public boolean addClientsOnLesson(int idLesson, int idClient) throws SQLException {
-        String insertSQL = "INSERT INTO CLIENTS_ON_LESSONS(id_client, id_lesson, commentary) VALUES (?, ?, ?);";
+        String insertSQL = "INSERT INTO CLIENTS_ON_LESSONS(id_client, id_lesson, status, commentary) VALUES (?, ?, ?,?);";
         PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, idClient);
         insertStatement.setInt(2, idLesson);
+        insertStatement.setString(3, "Планирует посетить");
         insertStatement.setString(3, "");
         insertStatement.execute();
         return true;
@@ -52,5 +56,49 @@ public class ClientsOnLessonMapper {
         extractUserStatement.setInt(1, id);
         ResultSet rs = extractUserStatement.executeQuery();
         return rs.getString("commentary");
+    }
+    public ClientsOnLessons findById (int id) throws SQLException {
+        for (ClientsOnLessons it : clientsOnLessons) {
+            if (it.getId()==(id))
+                return it;
+        }
+
+        String complaintsSelectStatement = "SELECT * FROM clients_on_lessons WHERE id = ?;";
+        PreparedStatement extractLessonsStatement = connection.prepareStatement(complaintsSelectStatement);
+        extractLessonsStatement.setInt(1, id);
+        ResultSet rs = extractLessonsStatement.executeQuery();
+
+        if (!rs.next()) return null;
+        int idClient = rs.getInt("id_client");
+        int idLesson = rs.getInt("id_lesson");
+        String status = rs.getString("status");
+        String commentary = rs.getString("commentary");
+        ClientsOnLessons newCOL = new ClientsOnLessons(id, idClient, idLesson, status, commentary);
+        clientsOnLessons.add(newCOL);
+
+        return newCOL;
+    }
+
+    public List<ClientsOnLessons> findAll() throws SQLException {
+        List<ClientsOnLessons> all = new ArrayList<>();
+
+        String lessonSelectStatement = "SELECT id FROM clients_on_lessons;";
+        Statement extractLessonStatement = connection.createStatement();
+        ResultSet rs = extractLessonStatement.executeQuery(lessonSelectStatement);
+
+        while (rs.next()) {
+            all.add(findById(rs.getInt("id")));
+        }
+
+        return all;
+    }
+
+    public void update(ClientsOnLessons clientsOnLessons) throws SQLException{
+        String updateSQL = "UPDATE clients_on_lessons set status = ?, commentary = ?  WHERE id = ?;";
+        PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
+        updateStatus.setString(1, clientsOnLessons.getCommentary());
+        updateStatus.setString(2, clientsOnLessons.getStatus());
+        updateStatus.setInt(3, clientsOnLessons.getId());
+        updateStatus.execute();
     }
 }
