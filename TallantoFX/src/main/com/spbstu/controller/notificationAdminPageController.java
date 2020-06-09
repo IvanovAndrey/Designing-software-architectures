@@ -11,6 +11,7 @@ import main.com.spbstu.Main;
 import main.com.spbstu.facade.Facade;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Notification;
 import main.com.spbstu.project.Request;
 import main.com.spbstu.user.User;
 
@@ -24,7 +25,7 @@ public class NotificationAdminPageController {
     private String login;
     private String name;
     private String status;
-
+/*
     @FXML
     private TableView<Request> requestTeacherTable;
     @FXML
@@ -39,15 +40,13 @@ public class NotificationAdminPageController {
     private TableColumn<Request, String> colStatus;
     @FXML
     private TableColumn<Request, String> colDays;
-
+*/
     @FXML
     private TableView<Request> requestClientTable;
     @FXML
     private TableColumn<Request, String> colIdCl;
     @FXML
     private TableColumn<Request, Date> colDateCl;
-    @FXML
-    private TableColumn<Request, String> colLoginCl;
     @FXML
     private TableColumn<Request, String> colNameCl;
     @FXML
@@ -60,21 +59,30 @@ public class NotificationAdminPageController {
     @FXML
     private TableColumn<Complaint, String> colIdc;
     @FXML
-    private TableColumn<Complaint, String> colFromc;
-    @FXML
-    private TableColumn<Complaint, String> colToc;
-    @FXML
     private TableColumn<Complaint, String> colLessonc;
     @FXML
     private TableColumn<Complaint, String> colThemec;
     @FXML
-    private TableColumn<Complaint, String> colStatusc;
-    @FXML
     private TableColumn<Complaint, String> colBtnEditc;
+
+    @FXML
+    private TableView<Notification> notificationTable;
+    @FXML
+    private TableColumn<Notification, String> colIdn;
+    @FXML
+    private TableColumn<Notification, String> colNamen;
+    @FXML
+    private TableColumn<Notification, String> colStatusn;
+    @FXML
+    private TableColumn<Notification, String> colThemen;
+    @FXML
+    private TableColumn<Notification, String> colTextn;
+
 
     @FXML private Tab complaintTab;
     @FXML private Tab teachersTab;
     @FXML private Tab clientsTab;
+    @FXML private Tab notificationTab;
     @FXML
     private Button backButton;
 
@@ -100,20 +108,15 @@ public class NotificationAdminPageController {
             ex.printStackTrace();
         }
         colIdc.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colFromc.setCellValueFactory(new PropertyValueFactory<>("theme"));
-        colToc.setCellValueFactory(new PropertyValueFactory<>("theme"));
         colLessonc.setCellValueFactory(new PropertyValueFactory<>("idIncedent"));
         colThemec.setCellValueFactory(new PropertyValueFactory<>("theme"));
-        colStatusc.setCellValueFactory(new PropertyValueFactory<>("theme"));
-        colBtnEditc.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-
-        setBtnEditCellFactory();
-
+        colBtnEditc.setCellValueFactory(new PropertyValueFactory<>("text"));
+        //setBtnEditCellFactory();
         ObservableList<Complaint> itemsc = FXCollections.observableArrayList();
         itemsc.addAll(complaintsList);
         complaintTable.setItems(itemsc);
     }
-
+/*
     public void onSelectTeacherTab() {
         List<Request> requestsList = new ArrayList<Request>();
         try {
@@ -123,7 +126,6 @@ public class NotificationAdminPageController {
         }
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("dateOfSend"));
-        colLogin.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         colName.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         colDays.setCellValueFactory(new PropertyValueFactory<>("dates"));
@@ -158,7 +160,7 @@ public class NotificationAdminPageController {
         };
         colBtnEditc.setCellFactory(btnDisplayCellFactory);
     }
-
+*/
     public void onSelectClientsTab() {
         List<Request> requestsList = new ArrayList<Request>();
         try {
@@ -168,7 +170,6 @@ public class NotificationAdminPageController {
         }
         colIdCl.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDateCl.setCellValueFactory(new PropertyValueFactory<>("dateOfSend"));
-        colLoginCl.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         colNameCl.setCellValueFactory(new PropertyValueFactory<>("idUser"));
         colStatusCl.setCellValueFactory(new PropertyValueFactory<>("status"));
         colDaysCl.setCellValueFactory(new PropertyValueFactory<>("dates"));
@@ -176,5 +177,22 @@ public class NotificationAdminPageController {
         ObservableList<Request> items = FXCollections.observableArrayList();
         items.addAll(requestsList);
         requestClientTable.setItems(items);
+    }
+
+    public void onSelectNotificationTab() {
+        List<Notification> notificationList = new ArrayList<Notification>();
+        try {
+            notificationList = facade.getNotifications();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        colIdn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNamen.setCellValueFactory(new PropertyValueFactory<>("idTo"));
+        colStatusn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colThemen.setCellValueFactory(new PropertyValueFactory<>("theme"));
+        colTextn.setCellValueFactory(new PropertyValueFactory<>("text"));
+        ObservableList<Notification> items = FXCollections.observableArrayList();
+        items.addAll(notificationList);
+        notificationTable.setItems(items);
     }
 }

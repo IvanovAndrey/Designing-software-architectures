@@ -17,15 +17,14 @@
             <Accordion layoutX="106.0" layoutY="101.0" />
             <TabPane prefHeight="327.0" prefWidth="675.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="teachersTab" onSelectionChanged="#onSelectTeacherTab" text="Заявки от учителей">
+                <!--<Tab fx:id="teachersTab" onSelectionChanged="#onSelectTeacherTab" text="Заявки от учителей">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <TableView fx:id="requestTeacherTable" prefHeight="298.0" prefWidth="675.0">
                                  <columns>
                                     <TableColumn fx:id="colId" prefWidth="75.0" text="№" />
-                                    <TableColumn fx:id="colLogin" prefWidth="130.0" text="Логин учителя" />
-                                    <TableColumn fx:id="colName" prefWidth="130.0" text="Имя учителя" />
+                                    <TableColumn fx:id="colName" prefWidth="130.0" text="Id учителя" />
                                     <TableColumn fx:id="colDays" prefWidth="117.0" text="Удобные дни" />
                                     <TableColumn fx:id="colDate" prefWidth="117.0" text="Дата отправки" />
                                     <TableColumn fx:id="colStatus" prefWidth="117.0" text="Статус" />
@@ -34,37 +33,35 @@
                            </children>
                         </AnchorPane>
                      </content>
-                  </Tab>
-                  <Tab fx:id="lientsTab" onSelectionChanged="#onSelectClientsTab" text="Заявки от клиентов">
+                  </Tab> -->
+                  <Tab fx:id="clientsTab" onSelectionChanged="#onSelectClientsTab" text="Заявки ">
                      <content>
-                        <AnchorPane  prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <TableView fx:id="requestClientTable" prefHeight="298.0" prefWidth="675.0">
                                  <columns>
                                     <TableColumn fx:id="colIdCl" prefWidth="75.0" text="№" />
-                                    <TableColumn fx:id="colLoginCl" prefWidth="130.0" text="Логин клиента" />
-                                    <TableColumn fx:id="colNameCl" prefWidth="130.0" text="Имя клиента" />
-                                    <TableColumn fx:id="colDaysCl" prefWidth="117.0" text="Удобные дни" />
-                                    <TableColumn fx:id="colDateCl" prefWidth="117.0" text="Дата отправки" />
-                                    <TableColumn fx:id="colStatusCl" prefWidth="117.0" text="Статус" />
+                                    <TableColumn fx:id="colNameCl" prefWidth="130.0" text="Id" />
+                                    <TableColumn fx:id="colDateCl" prefWidth="119.0" text="Дата отправки" />
+                                    <TableColumn fx:id="colStatusCl" prefWidth="90.0" text="Статус" />
+                                    <TableColumn fx:id="colDaysCl" prefWidth="259.0" text="Удобные дни" />
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Оплата">
+                  <Tab fx:id="notificationTab" onSelectionChanged="#onSelectNotificationTab" text="Уведомления">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView prefHeight="298.0" prefWidth="675.0">
+                              <TableView fx:id="notificationTable" prefHeight="298.0" prefWidth="675.0">
                                  <columns>
-                                    <TableColumn minWidth="2.0" prefWidth="38.0" text="№" />
-                                    <TableColumn prefWidth="130.0" text="Логин" />
-                                    <TableColumn minWidth="0.0" prefWidth="130.0" text="Имя" />
-                                    <TableColumn prefWidth="101.0" text="Статус" />
-                                    <TableColumn minWidth="0.0" prefWidth="100.0" text="Сумма" />
-                                    <TableColumn prefWidth="175.0" text="Подтверждение" />
+                                    <TableColumn fx:id="colIdn" minWidth="2.0" prefWidth="38.0" text="№" />
+                                    <TableColumn fx:id="colNamen" minWidth="0.0" prefWidth="62.0" text="id " />
+                                    <TableColumn fx:id="colStatusn" prefWidth="91.0" text="Статус" />
+                                    <TableColumn fx:id="colThemen" prefWidth="132.0" text="Тема" />
+                                    <TableColumn fx:id="colTextn" prefWidth="351.0" text="Текст" />
                                  </columns>
                               </TableView>
                            </children>
@@ -78,12 +75,9 @@
                               <TableView fx:id="complaintTable" prefHeight="298.0" prefWidth="675.0">
                                  <columns>
                                     <TableColumn fx:id="colIdc" minWidth="2.0" prefWidth="38.0" text="№" />
-                                    <TableColumn fx:id="colFromc" prefWidth="100.0" text="От кого" />
-                                    <TableColumn fx:id="colToc" minWidth="0.0" prefWidth="100.0" text="На кого" />
                                     <TableColumn fx:id="colLessonc" prefWidth="100.0" text="Урок" />
                                     <TableColumn fx:id="colThemec" minWidth="0.0" prefWidth="100.0" text="Тема" />
-                                    <TableColumn fx:id="colStatusc" prefWidth="100.0" text="Статус" />
-                                    <TableColumn fx:id="colBtnEditc" prefWidth="135.0" text="Подробнее" />
+                                    <TableColumn fx:id="colBtnEditc" prefWidth="435.0" text="Текст" />
                                  </columns>
                               </TableView>
                            </children>

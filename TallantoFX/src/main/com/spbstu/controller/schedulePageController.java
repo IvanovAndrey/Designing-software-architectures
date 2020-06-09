@@ -51,6 +51,8 @@ public class SchedulePageController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("dateOfLesson"));
         colTheme.setCellValueFactory(new PropertyValueFactory<>("theme"));

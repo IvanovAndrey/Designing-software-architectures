@@ -3,6 +3,7 @@ package main.com.spbstu.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import main.com.spbstu.Main;
 import main.com.spbstu.facade.Facade;
 
@@ -49,4 +50,11 @@ public class AdminProfilePageController {
         Main.showStartView();
     }
 
+    public void onClickCreateNotificationButton() {
+        Main.notificationCreateView(login, name, status);
+    }
+
+    public void onClickUsersButton() {
+        Main.showUsersView(login,name,status);
+    }
 }

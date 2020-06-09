@@ -12,11 +12,10 @@ public class Lesson {
     private Date dateOfLesson;
 
 
-
     public Lesson(int id_, int idTeacher_, String theme_, String commentary_, String status_, Date dateOfLesson_) {
         id = id_;
         idTeacher = idTeacher_;
-        theme =theme_;
+        theme = theme_;
         commentary = commentary_;
         status = status_;
         dateOfLesson = dateOfLesson_;

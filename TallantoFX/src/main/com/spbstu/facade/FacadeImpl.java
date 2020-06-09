@@ -2,10 +2,7 @@ package main.com.spbstu.facade;
 
 import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.UserNotFoundException;
-import main.com.spbstu.project.ClientsOnLessons;
-import main.com.spbstu.project.Complaint;
-import main.com.spbstu.project.Lesson;
-import main.com.spbstu.project.Request;
+import main.com.spbstu.project.*;
 import main.com.spbstu.user.User;
 import main.com.spbstu.storage.StorageRepository;
 
@@ -56,6 +53,10 @@ public class FacadeImpl implements Facade{
     @Override
     public void addComplaint(int idIncedent, String theme, String text) throws Exception{
             repository.addComplaint(idIncedent,theme,text);
+    }
+    @Override
+    public void addNotification(int idFrom, int idTo,String status, String theme, String text) throws Exception{
+        repository.addNotification(idFrom, idTo, status, theme, text);
     }
 
     @Override
@@ -120,6 +121,10 @@ public class FacadeImpl implements Facade{
         return repository.getComplaints();
     }
     @Override
+    public List<Notification> getNotifications() throws Exception {
+        return repository.getNotifications();
+    }
+    @Override
     public List<ClientsOnLessons> getCOL() throws Exception {
         return repository.getCOL();
     }
@@ -131,6 +136,13 @@ public class FacadeImpl implements Facade{
     public void updateCON(ClientsOnLessons con) throws Exception {
         repository.updateCON(con);
     }
-
+    @Override
+    public List<User> getUsers() throws Exception {
+        return repository.getUsers();
+    }
+    @Override
+    public List<User> getUsersByRole( String role) throws Exception {
+        return repository.getUsersByRole(role);
+    }
 
 }

@@ -81,7 +81,6 @@ public class LessonMapper {
         while (rs.next()) {
             all.add(findById(rs.getInt("id")));
         }
-
         return all;
     }
 

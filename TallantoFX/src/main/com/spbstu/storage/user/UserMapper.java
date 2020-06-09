@@ -101,9 +101,25 @@ public class UserMapper implements UserMapperInterface<User> {
     public List<User> findAll() throws SQLException {
         List<User> all = new ArrayList<>();
 
-        String userSelectStatement = "SELECT USERS.id FROM USERS;";
+        String userSelectStatement = "SELECT id FROM USERS;";
         Statement extractUserStatement = connection.createStatement();
         ResultSet rs = extractUserStatement.executeQuery(userSelectStatement);
+
+        while (rs.next()) {
+            all.add(findByID(rs.getInt("id")));
+        }
+
+        return all;
+    }
+
+    @Override
+    public List<User> findRole(String role) throws SQLException {
+        List<User> all = new ArrayList<>();
+
+        String userSelectStatement = "SELECT id FROM USERS WHERE status = ?;";
+        PreparedStatement extractUserStatement = connection.prepareStatement(userSelectStatement);
+        extractUserStatement.setString(1, role);
+        ResultSet rs = extractUserStatement.executeQuery();
 
         while (rs.next()) {
             all.add(findByID(rs.getInt("id")));

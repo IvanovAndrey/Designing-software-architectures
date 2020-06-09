@@ -1,9 +1,6 @@
 package main.com.spbstu.facade;
 
-import main.com.spbstu.project.ClientsOnLessons;
-import main.com.spbstu.project.Complaint;
-import main.com.spbstu.project.Lesson;
-import main.com.spbstu.project.Request;
+import main.com.spbstu.project.*;
 import main.com.spbstu.user.User;
 
 import java.sql.Date;
@@ -20,6 +17,9 @@ public interface Facade {
     void signOut(String user) throws Exception;
     User getCurrentUser(String login) throws Exception;
     void addComplaint(int idIncedent, String theme, String text) throws Exception;
+
+    void addNotification(int idFrom, int idTo, String status, String theme, String text) throws Exception;
+
     void addRequest (int idUser, String dates, Date dateOfSend) throws Exception;
     Date dateConversion(String date);
     boolean addLesson (String teacher, String theme, String date) throws Exception;
@@ -31,9 +31,15 @@ public interface Facade {
 
     List<Complaint> getComplaints() throws Exception;
 
+    List<Notification> getNotifications() throws Exception;
+
     List<ClientsOnLessons> getCOL() throws Exception;
 
     void updateLesson(Lesson lesson) throws Exception;
 
     void updateCON(ClientsOnLessons con) throws Exception;
+
+    List<User> getUsers() throws Exception;
+
+    List<User> getUsersByRole(String role) throws Exception;
 }

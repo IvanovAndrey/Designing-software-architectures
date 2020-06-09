@@ -4,14 +4,8 @@ import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.IncorrectPasswordException;
 import main.com.spbstu.exceptions.UserAlreadyExistsException;
 import main.com.spbstu.exceptions.UserNotFoundException;
-import main.com.spbstu.project.ClientsOnLessons;
-import main.com.spbstu.project.Complaint;
-import main.com.spbstu.project.Lesson;
-import main.com.spbstu.project.Request;
-import main.com.spbstu.storage.project.ClientsOnLessonMapper;
-import main.com.spbstu.storage.project.ComplaintMapper;
-import main.com.spbstu.storage.project.LessonMapper;
-import main.com.spbstu.storage.project.RequestMapper;
+import main.com.spbstu.project.*;
+import main.com.spbstu.storage.project.*;
 import main.com.spbstu.storage.user.UserMapper;
 import main.com.spbstu.user.User;
 
@@ -27,6 +21,7 @@ public class StorageRepository {
     private static RequestMapper requestMapper;
     private static LessonMapper lessonMapper;
     private static ClientsOnLessonMapper clientsOnLessonMapper;
+    private static NotificationMapper notificationMapper;
 
     public StorageRepository() {
         try {
@@ -35,6 +30,7 @@ public class StorageRepository {
             if (requestMapper == null) requestMapper = new RequestMapper();
             if (lessonMapper == null) lessonMapper = new LessonMapper();
             if (clientsOnLessonMapper == null) clientsOnLessonMapper = new ClientsOnLessonMapper();
+            if (notificationMapper == null) notificationMapper = new NotificationMapper();
 
         } catch (
                 SQLException e) {
@@ -151,6 +147,14 @@ public class StorageRepository {
             throw new DBConnectionException();
         }
     }
+    public void addNotification(int idFrom, int idTo,String status, String theme, String text) throws DBConnectionException {
+        try {
+            Notification notification = new Notification(0, idFrom, idTo, status, theme, text);
+            notificationMapper.addNotification(notification);
+        } catch (SQLException e) {
+            throw new DBConnectionException();
+        }
+    }
 
     public Lesson findlessonById(int id) throws DBConnectionException {
         try {
@@ -200,6 +204,15 @@ public class StorageRepository {
 
     public List<ClientsOnLessons> getCOL() throws SQLException {
         return clientsOnLessonMapper.findAll();
+    }
+    public List<Notification> getNotifications() throws SQLException {
+        return notificationMapper.findAll();
+    }
+    public List<User> getUsers() throws SQLException {
+        return userMapper.findAll();
+    }
+    public List<User> getUsersByRole(String role) throws SQLException {
+        return userMapper.findRole(role);
     }
 }
 

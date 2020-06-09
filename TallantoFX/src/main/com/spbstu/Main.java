@@ -262,6 +262,33 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
+    public static void notificationCreateView(String login, String name, String status) {
+        try{
+            String fxmlFile = "/main/resources/fxml/notificationCreate.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
+            NotificationCreatePageController uvc = loader.getController();
+            uvc.setup(login, name, status);
+            Scene scene = new Scene(root, 600, 400);
+            mainStage.setScene(scene);
+    } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public static void showUsersView(String login, String name, String status) {
+        try{
+            String fxmlFile = "/main/resources/fxml/usersPage.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
+           UsersPageController uvc = loader.getController();
+            uvc.setup(login, name, status);
+            Scene scene = new Scene(root, 600, 400);
+            mainStage.setScene(scene);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
 

@@ -56,6 +56,16 @@
                   <Font size="20.0" />
                </font>
             </Label>
+            <Button fx:id="usersButton" layoutX="400.0" layoutY="23.0" mnemonicParsing="false" onMouseClicked="#onClickUsersButton" prefHeight="31.0" prefWidth="130.0" text="Пользователи">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="createNotificationButton" layoutX="400.0" layoutY="223.0" mnemonicParsing="false" onMouseClicked="#onClickCreateNotificationButton" prefHeight="31.0" prefWidth="130.0" text="Новое уведомление">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Label layoutX="197.0" layoutY="-5.0" prefHeight="70.0" prefWidth="206.0" text="Профиль" textFill="#f8f6f6" textOverrun="WORD_ELLIPSIS">
