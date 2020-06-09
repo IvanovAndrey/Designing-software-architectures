@@ -34,7 +34,7 @@ public class ClientProfilePageController {
 
     @FXML
     private void onClickNotificationButton() {
-        Main.notificationClientView(login, name, status);
+        Main.notificationUserView(login, name, status);
     }
 
     @FXML

@@ -144,5 +144,13 @@ public class FacadeImpl implements Facade{
     public List<User> getUsersByRole( String role) throws Exception {
         return repository.getUsersByRole(role);
     }
+    @Override
+    public List<Notification> getNotificationsForUser( int id) throws Exception {
+        return repository.getNotificationsByIdTo(id);
+    }
 
+    @Override
+    public void setNotificationStatus (int id, String status) throws SQLException {
+             repository.setNotificationStatus(id, status);
+    }
 }

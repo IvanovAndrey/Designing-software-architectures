@@ -3,6 +3,7 @@ package main.com.spbstu.storage.project;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Notification;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.user.User;
 
 import java.io.IOException;
 import java.sql.*;
@@ -77,6 +78,28 @@ public class NotificationMapper {
         }
 
         return all;
+    }
+
+    public List<Notification> findAllByIdTo(int id) throws SQLException {
+        List<Notification> all = new ArrayList<>();
+
+        String userSelectStatement = "SELECT id FROM NOTIFICATIONS WHERE id_to = ?;";
+        PreparedStatement extractUserStatement = connection.prepareStatement(userSelectStatement);
+        extractUserStatement.setInt(1, id);
+        ResultSet rs = extractUserStatement.executeQuery();
+
+        while (rs.next()) {
+            all.add(findById(rs.getInt("id")));
+        }
+        return all;
+    }
+
+    public void setStatus (int id, String status) throws SQLException{
+        String updateSQL = "UPDATE notifications SET status = ? WHERE id = ?;";
+        PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
+        updateStatus.setString(1, status);
+        updateStatus.setInt(2, id);
+        updateStatus.execute();
     }
 
 }

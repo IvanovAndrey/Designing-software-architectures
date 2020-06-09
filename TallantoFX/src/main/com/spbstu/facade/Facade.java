@@ -42,4 +42,8 @@ public interface Facade {
     List<User> getUsers() throws Exception;
 
     List<User> getUsersByRole(String role) throws Exception;
+
+    List<Notification> getNotificationsForUser(int id) throws Exception;
+
+    void setNotificationStatus(int id, String status) throws SQLException;
 }

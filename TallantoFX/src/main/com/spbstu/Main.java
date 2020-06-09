@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Notification;
 
 import java.io.IOException;
 
@@ -105,7 +106,7 @@ public class Main extends Application {
     }
 
 
-    public static void notificationClientView(String login, String name, String status) {
+   /* public static void notificationClientView(String login, String name, String status) {
         try {
             String fxmlFile = "/main/resources/fxml/notificationsClientPage.fxml";
             FXMLLoader loader = new FXMLLoader();
@@ -119,7 +120,7 @@ public class Main extends Application {
         {
             e.printStackTrace();
         }
-    }
+    }*/
     public static void notificationAdminView(String login, String name, String status) {
         try {
             String fxmlFile = "/main/resources/fxml/notificationsAdminPage.fxml";
@@ -137,18 +138,20 @@ public class Main extends Application {
 
     }
 
-    public static void notificationTeacherView(String login, String name, String status) {
+    public static void notificationUserView(String login, String name, String status) {
         try {
-            String fxmlFile = "/main/resources/fxml/notificationsTeacherPage.fxml";
+            String fxmlFile = "/main/resources/fxml/notificationUserPage.fxml";
             FXMLLoader loader = new FXMLLoader();
             AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            NotificationTeacherPageController uvc = loader.getController();
+            NotificationUserPageController uvc = loader.getController();
             uvc.setup(login, name, status);
             Scene scene = new Scene(root, 675, 405);
             mainStage.setScene(scene);
         } catch(
                 IOException e)
         {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -290,5 +293,18 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
+    public static void approveNotificationView(String login, String name, String status, Notification notification) {
+        try{
+            String fxmlFile = "/main/resources/fxml/approveNitificationPage.fxml";
+            FXMLLoader loader = new FXMLLoader();
+            AnchorPane root =  (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
+            ApproveNotificationPageController uvc = loader.getController();
+            uvc.setup(login, name, status, notification);
+            Scene scene = new Scene(root, 600, 400);
+            mainStage.setScene(scene);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }}
 }
 

@@ -34,7 +34,7 @@ public class TeacherProfilePageController {
 
     @FXML
     private void onClickNotificationButton() {
-        Main.notificationTeacherView(login, name, status);
+        Main.notificationUserView(login, name, status);
     }
 
     @FXML

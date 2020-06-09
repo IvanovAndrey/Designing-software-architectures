@@ -214,6 +214,13 @@ public class StorageRepository {
     public List<User> getUsersByRole(String role) throws SQLException {
         return userMapper.findRole(role);
     }
+    public List<Notification> getNotificationsByIdTo(int id) throws SQLException {
+        return notificationMapper.findAllByIdTo(id);
+    }
+
+    public void setNotificationStatus(int id, String status) throws SQLException {
+        notificationMapper.setStatus(id,status);
+    }
 }
 
 
