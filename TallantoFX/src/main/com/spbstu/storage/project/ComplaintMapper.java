@@ -4,6 +4,7 @@ import main.com.spbstu.exceptions.EndBeforeStartException;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.storage.Mapper;
 import main.com.spbstu.user.User;
 
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ComplaintMapper {
+public class ComplaintMapper implements Mapper<Complaint> {
     private static Set<Complaint> complaints = new HashSet<>();
     private Connection connection;
 
@@ -61,7 +62,8 @@ public class ComplaintMapper {
         return newComplaint;
     }
 
-    private Complaint findById(int id) throws SQLException {
+    @Override
+    public Complaint findById(int id) throws SQLException, EndBeforeStartException {
         for (Complaint it : complaints) {
             if (it.getId()==(id))
                 return it;
@@ -83,9 +85,7 @@ public class ComplaintMapper {
         return newComplaint;
     }
 
-
-
-    public List<Complaint> findAll() throws SQLException {
+    public List<Complaint> findAll() throws SQLException, EndBeforeStartException {
         List<Complaint> all = new ArrayList<>();
 
         String complaintSelectStatement = "SELECT id FROM complaints;";
@@ -97,6 +97,34 @@ public class ComplaintMapper {
         }
 
         return all;
+    }
+
+    @Override
+    public void update(Complaint complaint) throws SQLException {
+        if (!(complaints.contains(complaint))){
+            addComplaint(complaint);
+            complaints.add(complaint);
+        }else{
+            String insertSQL = "UPDATE COMPLAINTS SET id_incedent= ?, theme= ?, text =? WHERE id =?;";
+            PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+            insertStatement.setInt(1, complaint.getIdIncedent());
+            insertStatement.setString(2, complaint.getTheme());
+            insertStatement.setString(3, complaint.getText());
+            insertStatement.setInt(4, complaint.getId());
+            insertStatement.execute();
+            ResultSet rs = insertStatement.getGeneratedKeys();
+        }
+    }
+
+    @Override
+    public void update() throws SQLException {
+        for (Complaint it : complaints)
+        update(it);
+    }
+
+    @Override
+    public void clear() {
+        complaints.clear();
     }
 
 

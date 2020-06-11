@@ -2,8 +2,10 @@ package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Notification;
 import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.storage.Mapper;
 
 import java.io.IOException;
 import java.sql.*;
@@ -12,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class RequestMapper {
+public class RequestMapper implements Mapper<Request> {
     private static Set<Request> requests = new HashSet<>();
     private Connection connection;
 
@@ -105,6 +107,27 @@ public class RequestMapper {
         }
 
         return all;
+    }
+
+    @Override
+    public void update(Request request) throws SQLException {
+        if(!(requests.contains(request))){
+            addRequest(request);
+            requests.add(request);
+        }else {
+            updateRequest(request);
+        }
+    }
+
+    @Override
+    public void update() throws SQLException {
+        for (Request it : requests)
+            update(it);
+    }
+
+    @Override
+    public void clear() {
+        requests.clear();
     }
 }
 

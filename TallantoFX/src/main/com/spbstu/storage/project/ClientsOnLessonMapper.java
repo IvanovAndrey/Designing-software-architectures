@@ -2,7 +2,9 @@ package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Notification;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.storage.Mapper;
 
 import java.io.IOException;
 import java.sql.*;
@@ -11,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ClientsOnLessonMapper {
+public class ClientsOnLessonMapper implements Mapper <ClientsOnLessons> {
     private static Set<ClientsOnLessons> clientsOnLessons = new HashSet<>();
     private Connection connection;
 
@@ -93,12 +95,29 @@ public class ClientsOnLessonMapper {
         return all;
     }
 
-    public void update(ClientsOnLessons clientsOnLessons) throws SQLException{
+
+    public void update(ClientsOnLessons clientOnLesson) throws SQLException{
+        if(!(clientsOnLessons.contains(clientOnLesson)))
+        {
+            addClientsOnLesson(clientOnLesson.getIdLesson(),clientOnLesson.getIdClient());
+            clientsOnLessons.add(clientOnLesson);
+        }
         String updateSQL = "UPDATE clients_on_lessons set status = ?, commentary = ?  WHERE id = ?;";
         PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
-        updateStatus.setString(1, clientsOnLessons.getCommentary());
-        updateStatus.setString(2, clientsOnLessons.getStatus());
-        updateStatus.setInt(3, clientsOnLessons.getId());
+        updateStatus.setString(1, clientOnLesson.getCommentary());
+        updateStatus.setString(2, clientOnLesson.getStatus());
+        updateStatus.setInt(3, clientOnLesson.getId());
         updateStatus.execute();
+    }
+
+    @Override
+    public void update() throws SQLException {
+        for (ClientsOnLessons it : clientsOnLessons)
+            update(it);
+    }
+
+    @Override
+    public void clear() {
+        clientsOnLessons.clear();
     }
 }

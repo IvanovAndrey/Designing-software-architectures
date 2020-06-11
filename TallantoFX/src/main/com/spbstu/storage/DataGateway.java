@@ -18,32 +18,17 @@ public class DataGateway {
     private static String JDBC_DRIVER = "org.postgresql.Driver";
     private static DataGateway dataGateway;
     private static PGSimpleDataSource dataSource;
-    //костыль
+
     static final String DB_URL = "jdbc:postgresql://127.0.0.1:5432/talanto";
     static final String USER = "postgres";
     static final String PASS = "29evodem";
 
     private DataGateway() throws IOException {
-        //Структура соединения с базой данных
-        /*
-        ConfigReader config = ConfigReader.getInstance();
-        dataSource = new PGSimpleDataSource();
-        dataSource.setURL(config.getDburl());
-        dataSource.setUser(config.getDbuser());
-        dataSource.setPassword(config.getDbpassword());
-*/
         dataSource = new PGSimpleDataSource();
         dataSource.setURL(DB_URL);
         dataSource.setUser(USER);
         dataSource.setPassword(PASS);
-        /*
-        try {
-            Class.forName(JDBC_DRIVER);
-        } catch (ClassNotFoundException se) {
-            se.printStackTrace();
-        }*/
 
-        //костыль
         System.out.println("Testing connection to PostgreSQL JDBC");
 
         try {
@@ -85,11 +70,11 @@ public class DataGateway {
         return dataSource;
     }
 
-    public void dropAll() throws SQLException {
-        executeSqlScript(DriverManager.getConnection(DB_URL, USER, PASS), new File("C:/Users/Maddy_juliet/Desktop/Zzz/TallantoFX/db/db_create.sql"));
+    public static void dropAll() throws SQLException {
+        executeSqlScript(DriverManager.getConnection(DB_URL, USER, PASS), new File("C:\\Users\\Maddy_juliet\\Desktop\\Zzz\\Designing-software-architectures\\TallantoFX\\db\\db_create.sql"));
     }
 
-    private void executeSqlScript(Connection conn, File inputFile) {
+    private static void executeSqlScript(Connection conn, File inputFile) {
 
         // Delimiter
         String delimiter = ";";

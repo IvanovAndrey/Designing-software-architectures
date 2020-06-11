@@ -1,8 +1,10 @@
 package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Notification;
 import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.storage.Mapper;
 import main.com.spbstu.user.User;
 
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class LessonMapper {
+public class LessonMapper implements Mapper<Lesson> {
     private static Set<Lesson> lessons = new HashSet<>();
     private Connection connection;
 
@@ -83,15 +85,31 @@ public class LessonMapper {
         }
         return all;
     }
+    @Override
+    public void update(Lesson lesson) throws SQLException {
+        if (!(lessons.contains(lesson))) {
+            addLesson(lesson);
+            lessons.add(lesson);
+        } else {
+            String updateSQL = "UPDATE LESSONS set theme = ?, commentary = ?, status = ?  WHERE id = ?;";
+            PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
+            updateStatus.setString(1, lesson.getTheme());
+            updateStatus.setString(2, lesson.getCommentary());
+            updateStatus.setString(3, lesson.getStatus());
+            updateStatus.setInt(4, lesson.getId());
+            updateStatus.execute();
+        }
+    }
 
-    public void update(Lesson lesson) throws SQLException{
-        String updateSQL = "UPDATE LESSONS set theme = ?, commentary = ?, status = ?  WHERE id = ?;";
-        PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
-        updateStatus.setString(1, lesson.getTheme());
-        updateStatus.setString(2, lesson.getCommentary());
-        updateStatus.setString(3, lesson.getStatus());
-        updateStatus.setInt(4, lesson.getId());
-        updateStatus.execute();
+    @Override
+    public void update() throws SQLException {
+        for (Lesson it : lessons)
+        update(it);
+    }
+
+    @Override
+    public void clear() {
+        lessons.clear();
     }
 }
 

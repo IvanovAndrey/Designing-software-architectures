@@ -3,6 +3,7 @@ package main.com.spbstu.storage.project;
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Notification;
 import main.com.spbstu.storage.DataGateway;
+import main.com.spbstu.storage.Mapper;
 import main.com.spbstu.user.User;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NotificationMapper {
+public class NotificationMapper implements Mapper<Notification> {
     private static Set<Notification> notifications = new HashSet<>();
     private Connection connection;
 
@@ -39,8 +40,8 @@ public class NotificationMapper {
         return true;
     }
 
-
-    private Notification findById(int id) throws SQLException {
+    @Override
+    public Notification findById(int id) throws SQLException {
         for (Notification it : notifications) {
             if (it.getId()==(id))
                 return it;
@@ -78,6 +79,47 @@ public class NotificationMapper {
         }
 
         return all;
+    }
+
+    @Override
+    public void update(Notification notification) throws SQLException {
+        if (!(notifications.contains(notification))) {
+            String insertSQL = "INSERT INTO NOTIFICATIONS(id_from, id_to, status, theme, text) VALUES (?, ?, ?, ?, ?);";
+            PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+            insertStatement.setInt(1, notification.getIdFrom());
+            insertStatement.setInt(2, notification.getIdTo());
+            insertStatement.setString(3, notification.getStatus());
+            insertStatement.setString(4, notification.getTheme());
+            insertStatement.setString(5, notification.getText());
+            insertStatement.execute();
+            ResultSet rs = insertStatement.getGeneratedKeys();
+            if (rs.next()) {
+                long id = rs.getLong(1);
+                notification.setId((int) id);
+            }
+                notifications.add(notification);
+        } else {
+            String insertSQL = "UPDATE NOTIFICATIONS SET id_from = ?, id_to = ?, status =?, theme = ?, text = ? WHERE id = ? ;";
+            PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+            insertStatement.setInt(1, notification.getIdFrom());
+            insertStatement.setInt(2, notification.getIdTo());
+            insertStatement.setString(3, notification.getStatus());
+            insertStatement.setString(4, notification.getTheme());
+            insertStatement.setString(5, notification.getText());
+            insertStatement.setInt(6, notification.getId());
+            insertStatement.execute();
+            }
+    }
+
+    @Override
+    public void update() throws SQLException {
+        for (Notification it : notifications)
+        update(it);
+    }
+
+    @Override
+    public void clear() {
+        notifications.clear();
     }
 
     public List<Notification> findAllByIdTo(int id) throws SQLException {

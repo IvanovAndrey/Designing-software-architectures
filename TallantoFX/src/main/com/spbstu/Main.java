@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import main.com.spbstu.project.ClientsOnLessons;
 import main.com.spbstu.project.Lesson;
 import main.com.spbstu.project.Notification;
+import main.com.spbstu.storage.DataGateway;
 
 import java.io.IOException;
 
@@ -105,22 +106,6 @@ public class Main extends Application {
         }
     }
 
-
-   /* public static void notificationClientView(String login, String name, String status) {
-        try {
-            String fxmlFile = "/main/resources/fxml/notificationsClientPage.fxml";
-            FXMLLoader loader = new FXMLLoader();
-            AnchorPane root = (AnchorPane) loader.load(Main.class.getResourceAsStream(fxmlFile));
-            NotificationClientPageController uvc = loader.getController();
-            uvc.setup(login, name, status);
-            Scene scene = new Scene(root, 675, 405);
-            mainStage.setScene(scene);
-        } catch(
-                IOException e)
-        {
-            e.printStackTrace();
-        }
-    }*/
     public static void notificationAdminView(String login, String name, String status) {
         try {
             String fxmlFile = "/main/resources/fxml/notificationsAdminPage.fxml";

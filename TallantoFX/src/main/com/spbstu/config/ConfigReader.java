@@ -5,13 +5,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * Created by kivi on 29.05.17.
+ */
 public class ConfigReader {
 
     InputStream inputStream;
     private String dburl;
     private String dbuser;
     private String dbpassword;
-
+    private String emailAccount;
+    private String emailPassword;
     private static ConfigReader instance = null;
 
     public static ConfigReader getInstance() throws IOException {
@@ -25,7 +29,7 @@ public class ConfigReader {
 
         try {
             Properties prop = new Properties();
-            String propFileName = "src/main/resources/config.properties";
+            String propFileName = "config.properties";
 
             inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 
@@ -38,7 +42,8 @@ public class ConfigReader {
             dburl = prop.getProperty("dburl");
             dbuser = prop.getProperty("dbuser");
             dbpassword = prop.getProperty("dbpassword");
-
+            emailAccount = prop.getProperty("emailAccount");
+            emailPassword = prop.getProperty("emailPassword");
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
@@ -59,5 +64,12 @@ public class ConfigReader {
         return dbpassword;
     }
 
+    public String getEmailAccount() {
+        return emailAccount;
+    }
+
+    public String getEmailPassword() {
+        return emailPassword;
+    }
 }
 

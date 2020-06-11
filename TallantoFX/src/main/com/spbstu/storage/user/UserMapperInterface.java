@@ -1,7 +1,6 @@
 package main.com.spbstu.storage.user;
 
 
-
 import main.com.spbstu.exceptions.EndBeforeStartException;
 import main.com.spbstu.storage.Mapper;
 import main.com.spbstu.user.User;

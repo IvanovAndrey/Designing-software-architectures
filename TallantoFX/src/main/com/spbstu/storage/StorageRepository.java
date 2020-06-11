@@ -1,9 +1,6 @@
 package main.com.spbstu.storage;
 
-import main.com.spbstu.exceptions.DBConnectionException;
-import main.com.spbstu.exceptions.IncorrectPasswordException;
-import main.com.spbstu.exceptions.UserAlreadyExistsException;
-import main.com.spbstu.exceptions.UserNotFoundException;
+import main.com.spbstu.exceptions.*;
 import main.com.spbstu.project.*;
 import main.com.spbstu.storage.project.*;
 import main.com.spbstu.storage.user.UserMapper;
@@ -78,7 +75,7 @@ public class StorageRepository {
 
     public User findById (int id) throws DBConnectionException {
         try {
-            User user = userMapper.findByID(id);
+            User user = userMapper.findById(id);
             if (user == null) throw new UserNotFoundException(user.getLogin());
             return user;
         } catch (SQLException | UserNotFoundException e) {
@@ -198,7 +195,7 @@ public class StorageRepository {
         return requestMapper.findAll();
     }
 
-    public List<Complaint> getComplaints() throws SQLException {
+    public List<Complaint> getComplaints() throws SQLException, EndBeforeStartException {
         return complaintMapper.findAll();
     }
 
@@ -220,6 +217,34 @@ public class StorageRepository {
 
     public void setNotificationStatus(int id, String status) throws SQLException {
         notificationMapper.setStatus(id,status);
+    }
+
+    public void clear() {
+        userMapper.clear();
+        complaintMapper.clear();
+        requestMapper.clear();
+        lessonMapper.clear();
+        clientsOnLessonMapper.clear();
+        notificationMapper.clear();
+    }
+
+    public void update() throws SQLException {
+        userMapper.update();
+        complaintMapper.update();
+        requestMapper.update();
+        lessonMapper.update();
+        clientsOnLessonMapper.update();
+        notificationMapper.update();
+    }
+
+    synchronized public void drop() throws DBConnectionException {
+        try {
+            DataGateway.getInstance().dropAll();
+        } catch (SQLException e) {
+            throw new DBConnectionException();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

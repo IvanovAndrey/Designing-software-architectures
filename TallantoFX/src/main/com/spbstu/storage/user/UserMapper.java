@@ -71,7 +71,7 @@ public class UserMapper implements UserMapperInterface<User> {
     }
 
     @Override
-    public User findByID(int id) throws SQLException {
+    public User findById(int id) throws SQLException {
         for (User it : users) {
             if (it.getId() == id)
                 return it;
@@ -106,7 +106,7 @@ public class UserMapper implements UserMapperInterface<User> {
         ResultSet rs = extractUserStatement.executeQuery(userSelectStatement);
 
         while (rs.next()) {
-            all.add(findByID(rs.getInt("id")));
+            all.add(findById(rs.getInt("id")));
         }
 
         return all;
@@ -122,7 +122,7 @@ public class UserMapper implements UserMapperInterface<User> {
         ResultSet rs = extractUserStatement.executeQuery();
 
         while (rs.next()) {
-            all.add(findByID(rs.getInt("id")));
+            all.add(findById(rs.getInt("id")));
         }
 
         return all;
@@ -149,7 +149,7 @@ public class UserMapper implements UserMapperInterface<User> {
         }
     }
 
-    @Override
+
     public void closeConnection() throws SQLException {
         connection.close();
     }
