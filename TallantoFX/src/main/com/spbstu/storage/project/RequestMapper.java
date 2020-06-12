@@ -47,7 +47,7 @@ public class RequestMapper implements Mapper<Request> {
     }
 
 
-    public boolean addRequest(Request request) throws SQLException {
+    public int addRequest(Request request) throws SQLException {
         String insertSQL = "INSERT INTO REQUESTS (id_user, status, dates, date_of_send) VALUES (?, ?, ?, ?);";
         PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, request.getIdUser());
@@ -60,19 +60,10 @@ public class RequestMapper implements Mapper<Request> {
             long id = rs.getLong(1);
             request.setId((int) id);
         }
-        return true;
+        return request.getId();
     }
 
 
-    public void updateRequest(Request request) throws SQLException{
-        String updateSQL = "UPDATE REQUESTS set status = ?, dates = ?, date_of_send= ? WHERE id_user = ?;";
-        PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
-        updateStatus.setString(1, request.getStatus());
-        updateStatus.setString(2, request.getDates());
-        updateStatus.setDate(3, request.getDateOfSend());
-        updateStatus.setInt(4, request.getId());
-        updateStatus.execute();
-    }
 
     public Request findById (int id) throws SQLException {
         for (Request it : requests) {
@@ -109,6 +100,21 @@ public class RequestMapper implements Mapper<Request> {
         return all;
     }
 
+    public int updateRequest(Request request) throws SQLException{
+        String updateSQL = "UPDATE REQUESTS set status = ?, dates = ?, date_of_send= ? WHERE id_user = ?;";
+        PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
+        updateStatus.setString(1, request.getStatus());
+        updateStatus.setString(2, request.getDates());
+        updateStatus.setDate(3, request.getDateOfSend());
+        updateStatus.setInt(4, request.getIdUser());
+        updateStatus.execute();
+        requests.clear();
+        List<Request> list = findAll();
+        for (Request it : list) {
+            requests.add(it);
+        }
+        return request.getId();
+    }
     @Override
     public void update(Request request) throws SQLException {
         if(!(requests.contains(request))){

@@ -54,4 +54,21 @@ public class Request {
         return this;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if ( (obj == null) ) return false;
+       Request other = (Request) obj;
+        boolean eq = true;
+        if (id != other.id)
+            eq = false;
+        if (idUser !=other.idUser)
+            eq = false;
+        if (!(status.equals(other.status)))
+            eq = false;
+        if (!(dates.equals(other.dates)))
+            eq = false;
+        if (!(dateOfSend.equals(other.dateOfSend)))
+            eq = false;
+        return eq;
+    }
 }

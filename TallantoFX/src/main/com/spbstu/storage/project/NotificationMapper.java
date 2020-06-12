@@ -2,6 +2,7 @@ package main.com.spbstu.storage.project;
 
 import main.com.spbstu.project.Complaint;
 import main.com.spbstu.project.Notification;
+import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.DataGateway;
 import main.com.spbstu.storage.Mapper;
 import main.com.spbstu.user.User;
@@ -23,7 +24,7 @@ public class NotificationMapper implements Mapper<Notification> {
         connection = gateway.getDataSource().getConnection();
     }
 
-    public boolean addNotification(Notification notification) throws SQLException {
+    public int addNotification(Notification notification) throws SQLException {
         String insertSQL = "INSERT INTO NOTIFICATIONS(id_from, id_to, status, theme, text) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, notification.getIdFrom());
@@ -37,7 +38,7 @@ public class NotificationMapper implements Mapper<Notification> {
             long id = rs.getLong(1);
             notification.setId((int) id);
         }
-        return true;
+        return notification.getId();
     }
 
     @Override
@@ -108,6 +109,11 @@ public class NotificationMapper implements Mapper<Notification> {
             insertStatement.setString(5, notification.getText());
             insertStatement.setInt(6, notification.getId());
             insertStatement.execute();
+            notifications.clear();
+            List<Notification> list = findAll();
+            for (Notification it : list) {
+                notifications.add(it);
+            }
             }
     }
 
@@ -142,6 +148,8 @@ public class NotificationMapper implements Mapper<Notification> {
         updateStatus.setString(1, status);
         updateStatus.setInt(2, id);
         updateStatus.execute();
+        update();
     }
+
 
 }

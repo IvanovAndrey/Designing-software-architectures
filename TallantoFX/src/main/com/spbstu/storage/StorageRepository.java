@@ -112,15 +112,16 @@ public class StorageRepository {
         }
     }
 
-    public void addRequest(int idUser, String datas, Date dateOdSend)
+    public int addRequest(int idUser, String datas, Date dateOdSend)
             throws DBConnectionException {
         try {
             if (!(requestMapper.findByIdUser(idUser) == null)) {
-                Request request = new Request(0, idUser, "NEW", datas, dateOdSend);
-                requestMapper.updateRequest(request);
+                Request request = requestMapper.findByIdUser(idUser);
+                request = new Request(request.getId(), idUser, "NEW", datas, dateOdSend);
+                return requestMapper.updateRequest(request);
             } else {
                 Request request = new Request(0, idUser, "NEW", datas, dateOdSend);
-                requestMapper.addRequest(request);
+                return requestMapper.addRequest(request);
             }
         } catch (SQLException e) {
             throw new DBConnectionException();
@@ -144,10 +145,10 @@ public class StorageRepository {
             throw new DBConnectionException();
         }
     }
-    public void addNotification(int idFrom, int idTo,String status, String theme, String text) throws DBConnectionException {
+    public int addNotification(int idFrom, int idTo,String status, String theme, String text) throws DBConnectionException {
         try {
             Notification notification = new Notification(0, idFrom, idTo, status, theme, text);
-            notificationMapper.addNotification(notification);
+            return notificationMapper.addNotification(notification);
         } catch (SQLException e) {
             throw new DBConnectionException();
         }
@@ -216,7 +217,14 @@ public class StorageRepository {
     }
 
     public void setNotificationStatus(int id, String status) throws SQLException {
-        notificationMapper.setStatus(id,status);
+        Notification notification = findNotificationById(id);
+        notification.setStatus(status);
+        notificationMapper.update(notification);
+        //notificationMapper.setStatus(id,status);
+    }
+
+    public Notification findNotificationById(int id) throws SQLException {
+        return notificationMapper.findById(id);
     }
 
     public void clear() {

@@ -55,8 +55,9 @@ public class FacadeImpl implements Facade{
             repository.addComplaint(idIncedent,theme,text);
     }
     @Override
-    public void addNotification(int idFrom, int idTo,String status, String theme, String text) throws Exception{
-        repository.addNotification(idFrom, idTo, status, theme, text);
+    public void addNotification(String login, int idFrom, int idTo,String status, String theme, String text) throws Exception{
+        User user = new User(getCurrentUser(login));
+        user.createNotification(idFrom, idTo, status, theme, text);
     }
 
     @Override

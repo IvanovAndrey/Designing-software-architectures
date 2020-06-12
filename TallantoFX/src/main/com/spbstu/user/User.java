@@ -6,7 +6,12 @@ package main.com.spbstu.user;
 import main.com.spbstu.exceptions.NotAuthenticatedException;
 import main.com.spbstu.exceptions.DBConnectionException;
 import main.com.spbstu.exceptions.IncorrectPasswordException;
+import main.com.spbstu.project.Notification;
+import main.com.spbstu.project.Request;
 import main.com.spbstu.storage.StorageRepository;
+
+import java.sql.Date;
+import java.sql.SQLException;
 
 public class User implements UserInterface {
 
@@ -15,7 +20,7 @@ public class User implements UserInterface {
     private String name;
     private String status;
     private boolean authenticated;
-
+    StorageRepository repository;
 
     public User(int id_, String login_, String name_, String status_) {
         id = id_;
@@ -23,6 +28,7 @@ public class User implements UserInterface {
         name = name_;
         status = status_;
         authenticated = false;
+        repository = new StorageRepository();
     }
 
     public User(User user) {
@@ -80,7 +86,29 @@ public class User implements UserInterface {
         if (isAuthenticated()) return;
         throw new NotAuthenticatedException(toString() + " is not authenticated");
     }
+    @Override
+    public Notification createNotification(int idFrom, int idTo, String status, String theme, String text) throws DBConnectionException {
+        Notification notification = new Notification(0, idFrom, idTo, status, theme, text);
+        notification.setId(repository.addNotification(idFrom, idTo, status, theme, text));
+        return notification;
+    }
 
+    @Override
+    public Notification findNotificationById(int id) throws SQLException {
+        return  repository.findNotificationById(id);
+    }
+
+    @Override
+    public Request createRequest(int idUser, String dates, Date dateOfSend) throws DBConnectionException {
+        Request request = new Request(0, idUser, "NEW", dates, dateOfSend);
+        request.setId(repository.addRequest(idUser,  dates, dateOfSend));
+        return request;
+    }
+
+    @Override
+    public void setNotificationStatus(int id, String status) throws SQLException {
+        repository.setNotificationStatus(id, status);
+    }
 
     @Override
     public boolean equals(Object obj) {

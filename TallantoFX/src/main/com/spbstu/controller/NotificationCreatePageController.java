@@ -55,7 +55,7 @@ public class NotificationCreatePageController {
         int idTo = Integer.parseInt(idField.getText());
         try {
             User admin = facade.getCurrentUser(login);
-            facade.addNotification(admin.getId(),idTo,"NEW",theme,text);
+            facade.addNotification(admin.getLogin(), admin.getId(),idTo,"NEW",theme,text);
             alert.setTitle("Успех");
             alert.setHeaderText("Уведомление отправлено");
             alert.showAndWait();

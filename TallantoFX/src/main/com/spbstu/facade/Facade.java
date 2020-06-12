@@ -18,7 +18,7 @@ public interface Facade {
     User getCurrentUser(String login) throws Exception;
     void addComplaint(int idIncedent, String theme, String text) throws Exception;
 
-    void addNotification(int idFrom, int idTo, String status, String theme, String text) throws Exception;
+    void addNotification(String login, int idFrom, int idTo, String status, String theme, String text) throws Exception;
 
     void addRequest (int idUser, String dates, Date dateOfSend) throws Exception;
     Date dateConversion(String date);
