@@ -1,5 +1,7 @@
 import main.com.spbstu.exceptions.IncorrectPasswordException;
 import main.com.spbstu.exceptions.UserAlreadyExistsException;
+import main.com.spbstu.project.Lesson;
+import main.com.spbstu.project.Notification;
 import main.com.spbstu.storage.StorageRepository;
 import main.com.spbstu.user.User;
 import org.junit.After;
@@ -56,7 +58,7 @@ public class StorageRepositoryTest {
     public void authenticateUserTest() throws Exception {
 
         try {
-            repository.addUser("123", "123", "admin", "123");
+            repository.addUser("1234", "1234", "admin", "1234");
             assertTrue("Exception not thrown", true);
         } catch (UserAlreadyExistsException e) {
             assertTrue("Exception thrown", false);

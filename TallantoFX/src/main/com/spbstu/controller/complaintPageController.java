@@ -35,29 +35,12 @@ public class ComplaintPageController {
 
     @FXML
     private void onClickSendButton() {
-        //to do
-        //проверка был ли юзер на уроке
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ошибка");
-
         String theme = themeField.getText();
         String text = textField.getText();
-        if (idField.getText().isEmpty()){
-            alert.setHeaderText("Заполните поле id урока");
-            alert.showAndWait();
-            return;
-        }else if(theme.isEmpty()) {
-            alert.setHeaderText("Заполните поле краткого описания проблемы");
-            alert.showAndWait();
-            return;}
-        else if(text.replace("\n", "").isEmpty() ){
-            alert.setHeaderText("Заполните поле полного описания проблемы");
-            alert.showAndWait();
-            return;
-        }
-        int idIncedent = Integer.parseInt(idField.getText());
+        String idIncedent = idField.getText();
         try {
-            facade.addComplaint(idIncedent,theme,text);
+            facade.addComplaint(login, idIncedent,theme,text);
             alert.setTitle("Успех");
             alert.setHeaderText("Жалоба отправлена");
             alert.showAndWait();

@@ -23,20 +23,21 @@ public class LessonMapper implements Mapper<Lesson> {
         connection = gateway.getDataSource().getConnection();
     }
 
-    public boolean addLesson(Lesson lesson) throws SQLException {
-        String insertSQL = "INSERT INTO LESSONS(id_teacher, theme, status, date_of_lesson) VALUES (?, ?, ?, ?);";
+    public int addLesson(Lesson lesson) throws SQLException {
+        String insertSQL = "INSERT INTO LESSONS(id_teacher, theme, status, commentary, date_of_lesson) VALUES (?, ?, ?, ?, ?);";
         PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, lesson.getIdTeacher());
         insertStatement.setString(2, lesson.getTheme());
         insertStatement.setString(3, lesson.getStatus());
-        insertStatement.setDate(4, lesson.getDateOfLesson());
+        insertStatement.setString(4, "");
+        insertStatement.setDate(5, lesson.getDateOfLesson());
         insertStatement.execute();
         ResultSet rs = insertStatement.getGeneratedKeys();
         if (rs.next()) {
             long id = rs.getLong(1);
             lesson.setId((int) id);
         }
-        return true;
+        return lesson.getId();
     }
 
     public Integer findIDLesson(int idTeacher, Date date) throws SQLException {
@@ -87,10 +88,10 @@ public class LessonMapper implements Mapper<Lesson> {
     }
     @Override
     public void update(Lesson lesson) throws SQLException {
-        if (!(lessons.contains(lesson))) {
+       /* if (!(lessons.contains(lesson))) {
             addLesson(lesson);
             lessons.add(lesson);
-        } else {
+        } else {*/
             String updateSQL = "UPDATE LESSONS set theme = ?, commentary = ?, status = ?  WHERE id = ?;";
             PreparedStatement updateStatus = connection.prepareStatement(updateSQL);
             updateStatus.setString(1, lesson.getTheme());
@@ -98,6 +99,10 @@ public class LessonMapper implements Mapper<Lesson> {
             updateStatus.setString(3, lesson.getStatus());
             updateStatus.setInt(4, lesson.getId());
             updateStatus.execute();
+            lessons.clear();
+            List<Lesson> list = findAll();
+            for (Lesson it : list) {
+            lessons.add(it);
         }
     }
 

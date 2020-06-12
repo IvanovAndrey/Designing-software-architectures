@@ -65,7 +65,7 @@ public class LessonPageController {
 
         List<ClientsOnLessons> colList = new ArrayList<ClientsOnLessons>();
         try {
-            colList = facade.getCOL();
+            colList = facade.getCONByLesson(lesson.getId());
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -95,7 +95,7 @@ public class LessonPageController {
         lesson.setStatus(String.valueOf(statusBox.getValue()));
         lesson.setTheme(themeField.getText());
         lesson.setCommetnary(commentField.getText());
-        facade.updateLesson(lesson);
+        facade.updateLesson(login, lesson);
         alert.setHeaderText("Урок обновлен");
         alert.showAndWait();
 

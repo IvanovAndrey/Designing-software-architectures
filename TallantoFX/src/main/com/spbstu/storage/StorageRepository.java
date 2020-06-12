@@ -94,11 +94,11 @@ public class StorageRepository {
         return false;
     }
 
-    public void addComplaint(int idIncedent, String theme, String text)
+    public int addComplaint(int idIncedent, String theme, String text)
             throws DBConnectionException {
         try {
             Complaint complaint = new Complaint(0, idIncedent, theme, text);
-            complaintMapper.addComplaint(complaint);
+            return complaintMapper.addComplaint(complaint);
         } catch (SQLException e) {
             throw new DBConnectionException();
         }
@@ -129,10 +129,10 @@ public class StorageRepository {
 
     }
 
-    public void addLesson(int idTeacher, String theme, Date dateOfLesson) throws DBConnectionException {
+    public int addLesson(int idTeacher, String theme, Date dateOfLesson) throws DBConnectionException {
         try {
             Lesson lesson = new Lesson(0, idTeacher, theme, "", "OPEN", dateOfLesson);
-            lessonMapper.addLesson(lesson);
+            return  (lessonMapper.addLesson(lesson));
         } catch (SQLException e) {
             throw new DBConnectionException();
         }
@@ -203,6 +203,11 @@ public class StorageRepository {
     public List<ClientsOnLessons> getCOL() throws SQLException {
         return clientsOnLessonMapper.findAll();
     }
+
+    public List<ClientsOnLessons> getCONByLesson(int idLesson) throws SQLException {
+        return clientsOnLessonMapper.findOnLesson(idLesson);
+    }
+
     public List<Notification> getNotifications() throws SQLException {
         return notificationMapper.findAll();
     }
@@ -225,6 +230,10 @@ public class StorageRepository {
 
     public Notification findNotificationById(int id) throws SQLException {
         return notificationMapper.findById(id);
+    }
+
+    public boolean isOnLesson (int idUser, int idIncedent) throws SQLException {
+        return clientsOnLessonMapper.isOnLesson(idUser, idIncedent);
     }
 
     public void clear() {

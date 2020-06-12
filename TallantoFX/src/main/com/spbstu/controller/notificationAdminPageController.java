@@ -25,22 +25,7 @@ public class NotificationAdminPageController {
     private String login;
     private String name;
     private String status;
-/*
-    @FXML
-    private TableView<Request> requestTeacherTable;
-    @FXML
-    private TableColumn<Request, String> colId;
-    @FXML
-    private TableColumn<Request, Date> colDate;
-    @FXML
-    private TableColumn<Request, String> colLogin;
-    @FXML
-    private TableColumn<Request, String> colName;
-    @FXML
-    private TableColumn<Request, String> colStatus;
-    @FXML
-    private TableColumn<Request, String> colDays;
-*/
+
     @FXML
     private TableView<Request> requestClientTable;
     @FXML
@@ -111,56 +96,12 @@ public class NotificationAdminPageController {
         colLessonc.setCellValueFactory(new PropertyValueFactory<>("idIncedent"));
         colThemec.setCellValueFactory(new PropertyValueFactory<>("theme"));
         colBtnEditc.setCellValueFactory(new PropertyValueFactory<>("text"));
-        //setBtnEditCellFactory();
+
         ObservableList<Complaint> itemsc = FXCollections.observableArrayList();
         itemsc.addAll(complaintsList);
         complaintTable.setItems(itemsc);
     }
-/*
-    public void onSelectTeacherTab() {
-        List<Request> requestsList = new ArrayList<Request>();
-        try {
-            requestsList = facade.getRequests();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("dateOfSend"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("idUser"));
-        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        colDays.setCellValueFactory(new PropertyValueFactory<>("dates"));
 
-        ObservableList<Request> items = FXCollections.observableArrayList();
-        items.addAll(requestsList);
-        requestTeacherTable.setItems(items);
-    }
-
-    private void setBtnEditCellFactory() {
-        Callback<TableColumn<Complaint, String>, TableCell<Complaint, String>> btnDisplayCellFactory
-                = new Callback<TableColumn<Complaint, String>, TableCell<Complaint, String>>() {
-            @Override
-            public TableCell<Complaint, String> call(TableColumn<Complaint, String> param) {
-                final TableCell<Complaint, String> cell = new TableCell<Complaint, String>() {
-
-                    final Button btn = new Button("Подробнее");
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        btn.getStyleClass().add("btn-default");
-                        btn.setOnAction(event -> {
-                            Complaint complaint = getTableView().getItems().get(getIndex());
-                            //Main.lessonView(login, name, status, lesson);
-                        });
-                        setGraphic(btn);
-                        setText(null);
-                    }
-                };
-                return cell;
-            }
-        };
-        colBtnEditc.setCellFactory(btnDisplayCellFactory);
-    }
-*/
     public void onSelectClientsTab() {
         List<Request> requestsList = new ArrayList<Request>();
         try {

@@ -18,12 +18,8 @@ public class RegistrationPageController {
     @FXML private Button registerButton;
     @FXML private Button cancelButton;
     @FXML private ChoiceBox choiceBox;
-    @FXML
-    private void initialize() {
-       /* for (Status status : Status.values()) {
-            choiceBox.getItems().add(status.toString());
-        }*/
-    }
+
+
     @FXML private void onClickRegisterButton() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ошибка");

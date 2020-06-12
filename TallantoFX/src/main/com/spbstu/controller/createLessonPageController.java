@@ -38,51 +38,9 @@ public class CreateLessonPageController {
         String theme = themeField.getText();
         String teacher = teacherField.getText();
         String clientString = clientsField.getText();
-        String[] clients;
-        String delimetr ="-";
-        boolean allUsersExist = true;
-        clients = clientString.replace(" ", "").split(delimetr);
-        for (int i = 0; i <clients.length; i++) {
-            if (!(facade.isUserExist(clients[i])) || !(facade.getCurrentUser(clients[i]).getStatus().equals("client")))
-                allUsersExist = false;
-        }
-         if(theme.isEmpty()) {
-            alert.setHeaderText("Укажите тему урока");
-            alert.showAndWait();
-            return;}
-        else if(teacher.isEmpty() ){
-            alert.setHeaderText("Укажите преподавателя");
-            alert.showAndWait();
-            return;
-        }else if(clientString.isEmpty() ){
-            alert.setHeaderText("Укажите учеников");
-            alert.showAndWait();
-            return;
-        }else if (clients.length > 5){
-            alert.setHeaderText("Количество учеников превышает 5");
-            alert.showAndWait();
-            return;
-        }else if(!(facade.isUserExist(teacher))){
-             alert.setHeaderText("Преподавателя с таким логином не существует");
-             alert.showAndWait();
-             return;
-         }else if (!allUsersExist){
-             alert.setHeaderText("Ошибка в логинах учеников.\n Проверьте формат ввода и наличие учеников");
-             alert.showAndWait();
-             return;
-         }
 
         try {
-            if(!(facade.addLesson(teacher, theme, date))){
-                alert.setHeaderText("Не удалось создать урок. Возможные причины: " +
-                        "\n 1. Данный пользователь не обладает стаусом преподавателя." +
-                        "\n 2. Урок у этого учителя в эту дату уже существует");
-                alert.showAndWait();
-                return;
-            }
-            for (int i = 0; i <clients.length; i++) {
-                facade.addClientOnLesson(teacher, date, clients[i]);
-            }
+            facade.addLesson(login, teacher, theme, date, clientString);
             alert.setTitle("Успех");
             alert.setHeaderText("Урок создан");
             alert.showAndWait();

@@ -52,5 +52,20 @@ public class Complaint {
         return this;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if ( (obj == null) ) return false;
+        Complaint other = (Complaint) obj;
+        boolean eq = true;
+        if (id != other.id)
+            eq = false;
+        if (idIncedent !=other.idIncedent)
+            eq = false;
+        if (!(theme.equals(other.theme)))
+            eq = false;
+        if (!(text.equals(other.text)))
+            eq = false;
+        return eq;
+    }
 
 }

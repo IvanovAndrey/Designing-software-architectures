@@ -66,7 +66,7 @@ public class RequestPageController {
             dates = dates + "% СБ ";
         if(box7.isSelected())
             dates = dates + "% ВС ";
-        facade.addRequest(id,dates,dateOfSend);
+        facade.addRequest(login,id,dates,dateOfSend);
         alert.setHeaderText("Заявка была отправлена \n В случае, если это не первая ваша заявка - данные были обновлены");
         alert.showAndWait();
         if(status.equals("client"))

@@ -24,7 +24,7 @@ public class ComplaintMapper implements Mapper<Complaint> {
         connection = gateway.getDataSource().getConnection();
     }
 
-    public boolean addComplaint(Complaint complaint) throws SQLException {
+    public int addComplaint(Complaint complaint) throws SQLException {
         String insertSQL = "INSERT INTO COMPLAINTS(id_incedent, theme, text) VALUES (?, ?, ?);";
         PreparedStatement insertStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
         insertStatement.setInt(1, complaint.getIdIncedent());
@@ -36,7 +36,7 @@ public class ComplaintMapper implements Mapper<Complaint> {
             long id = rs.getLong(1);
             complaint.setId((int) id);
         }
-        return true;
+        return complaint.getId();
     }
 
     public Complaint findByIdIncedent(int idIncedent) throws SQLException {

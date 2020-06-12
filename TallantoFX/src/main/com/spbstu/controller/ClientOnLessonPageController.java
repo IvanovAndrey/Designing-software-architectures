@@ -49,7 +49,7 @@ public class ClientOnLessonPageController {
         String status = String.valueOf(choiceBox.getValue());
         col.setCommetnary(comment);
         col.setStatus(status);
-        facade.updateCON(col);
+        facade.updateCON(login, col);
         alert.setHeaderText("Информация об ученике обновлена");
         alert.showAndWait();
     }

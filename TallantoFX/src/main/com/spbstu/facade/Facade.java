@@ -16,14 +16,12 @@ public interface Facade {
 
     void signOut(String user) throws Exception;
     User getCurrentUser(String login) throws Exception;
-    void addComplaint(int idIncedent, String theme, String text) throws Exception;
+    void addComplaint(String login, String idIncedent, String theme, String text) throws Exception;
 
     void addNotification(String login, int idFrom, int idTo, String status, String theme, String text) throws Exception;
 
-    void addRequest (int idUser, String dates, Date dateOfSend) throws Exception;
-    Date dateConversion(String date);
-    boolean addLesson (String teacher, String theme, String date) throws Exception;
-    void addClientOnLesson(String teacher, String date, String client) throws Exception;
+    void addRequest (String login, int idUser, String dates, Date dateOfSend) throws Exception;
+    void addLesson (String login, String teacher, String theme, String date, String clientString) throws Exception;
 
     List<Lesson> getLessons() throws Exception;
 
@@ -35,9 +33,11 @@ public interface Facade {
 
     List<ClientsOnLessons> getCOL() throws Exception;
 
-    void updateLesson(Lesson lesson) throws Exception;
+    List<ClientsOnLessons> getCONByLesson(int idLesson) throws Exception;
 
-    void updateCON(ClientsOnLessons con) throws Exception;
+    void updateLesson(String login, Lesson lesson) throws Exception;
+
+    void updateCON(String login, ClientsOnLessons con) throws Exception;
 
     List<User> getUsers() throws Exception;
 

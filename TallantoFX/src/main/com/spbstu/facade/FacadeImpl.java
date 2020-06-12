@@ -51,8 +51,9 @@ public class FacadeImpl implements Facade{
     }
 
     @Override
-    public void addComplaint(int idIncedent, String theme, String text) throws Exception{
-            repository.addComplaint(idIncedent,theme,text);
+    public void addComplaint(String login, String idIncedent, String theme, String text) throws Exception{
+            User user = repository.getUser(login);
+            user.createComplaint(idIncedent,theme,text);
     }
     @Override
     public void addNotification(String login, int idFrom, int idTo,String status, String theme, String text) throws Exception{
@@ -61,52 +62,18 @@ public class FacadeImpl implements Facade{
     }
 
     @Override
-    public void addRequest(int idUser, String dates, Date dateOfSend) throws Exception {
-            repository.addRequest(idUser,dates,dateOfSend);
+    public void addRequest(String login, int idUser, String dates, Date dateOfSend) throws Exception {
+            User user = new User(getCurrentUser(login));
+            user.createRequest(idUser,dates,dateOfSend);
     }
 
-    @Override
-    public Date dateConversion(String date){
-        LocalDate currentDate = LocalDate.now();
-        LocalDate nextDate = currentDate;
-        if(date.equals("ПН"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.MONDAY));
-        if(date.equals("ВТ"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
-        if(date.equals("СР"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.WEDNESDAY));
-        if(date.equals("ЧТ"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.THURSDAY));
-        if(date.equals("ПТ"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
-        if(date.equals("СБ"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.SATURDAY));
-        if(date.equals("ВС"))
-            nextDate = currentDate.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
-        Date sqlDate;
-        return sqlDate = java.sql.Date.valueOf(nextDate);
-    }
 
     @Override
-    public boolean addLesson(String teacher, String theme, String date) throws Exception {
-        User user = repository.getUser(teacher);
-        if (user.getStatus().equals("teacher")){
-        Date sqlDate = dateConversion(date);
-            if(!(repository.isLessonExist(user.getId(), sqlDate))){
-            repository.addLesson(user.getId(),theme,sqlDate);
-            return true;} else { return false;}}
-        else
-            return false;
+    public void addLesson(String login, String teacher, String theme, String date, String clientString) throws Exception {
+        User user = repository.getUser(login);
+        user.createLesson(teacher, theme, date, clientString);
     }
 
-    @Override
-    public void addClientOnLesson(String teacher, String date, String client) throws Exception {
-        User userClient = repository.getUser(client);
-        User userTeacher = repository.getUser(teacher);
-        Date sqlDate = dateConversion(date);
-        int id = repository.findIDLesson(userTeacher.getId(), sqlDate);
-        repository.addClientOnLesson(id, userClient.getId());
-    }
 
     @Override
     public List<Lesson> getLessons() throws Exception {
@@ -129,13 +96,20 @@ public class FacadeImpl implements Facade{
     public List<ClientsOnLessons> getCOL() throws Exception {
         return repository.getCOL();
     }
+    @Override
+    public List<ClientsOnLessons> getCONByLesson(int idLesson) throws Exception {
+             Lesson lesson = repository.findlessonById(idLesson);
+        return lesson.getCol(lesson.getId());
+    }
    @Override
-   public void updateLesson(Lesson lesson) throws Exception {
-             repository.updateLesson(lesson);
+   public void updateLesson(String login, Lesson lesson) throws Exception {
+             User user = repository.getUser(login);
+             user.updateLesson(lesson);
    }
     @Override
-    public void updateCON(ClientsOnLessons con) throws Exception {
-        repository.updateCON(con);
+    public void updateCON(String login, ClientsOnLessons con) throws Exception {
+        User user = repository.getUser(login);
+        user.updateCON(con);
     }
     @Override
     public List<User> getUsers() throws Exception {

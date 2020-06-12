@@ -1,6 +1,10 @@
 package main.com.spbstu.project;
 
+import main.com.spbstu.storage.StorageRepository;
+
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
 
 public class Lesson {
 
@@ -10,7 +14,7 @@ public class Lesson {
     private String commentary;
     private String status;
     private Date dateOfLesson;
-
+    StorageRepository repository = new StorageRepository();
 
     public Lesson(int id_, int idTeacher_, String theme_, String commentary_, String status_, Date dateOfLesson_) {
         id = id_;
@@ -67,5 +71,29 @@ public class Lesson {
 
     public void setTheme(String theme_) {
         theme = theme_;
+    }
+
+    public List<ClientsOnLessons> getCol (int idLesson) throws SQLException {
+        return repository.getCONByLesson(idLesson);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ( (obj == null) ) return false;
+        Lesson other = (Lesson) obj;
+        boolean eq = true;
+        if (id != other.id)
+            eq = false;
+        if (idTeacher !=other.idTeacher)
+            eq = false;
+        if (!theme.equals(other.theme))
+            eq = false;
+        if (!(status.equals(other.status)))
+            eq = false;
+        if (!(commentary.equals(other.commentary)))
+            eq = false;
+        if (!(dateOfLesson.equals(other.dateOfLesson)))
+            eq = false;
+        return eq;
     }
 }

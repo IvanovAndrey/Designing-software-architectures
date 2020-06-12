@@ -28,7 +28,7 @@ public class ClientsOnLessonMapper implements Mapper <ClientsOnLessons> {
         insertStatement.setInt(1, idClient);
         insertStatement.setInt(2, idLesson);
         insertStatement.setString(3, "Планирует посетить");
-        insertStatement.setString(3, "");
+        insertStatement.setString(4, "");
         insertStatement.execute();
         return true;
     }
@@ -94,6 +94,20 @@ public class ClientsOnLessonMapper implements Mapper <ClientsOnLessons> {
 
         return all;
     }
+    public List<ClientsOnLessons> findOnLesson(int idLesson) throws SQLException {
+        List<ClientsOnLessons> all = new ArrayList<>();
+
+        String lessonSelectStatement = "SELECT id FROM clients_on_lessons WHERE id_lesson = ?;";
+        PreparedStatement extractLessonStatement = connection.prepareStatement(lessonSelectStatement);
+        extractLessonStatement.setInt(1, idLesson);
+        ResultSet rs = extractLessonStatement.executeQuery();
+
+        while (rs.next()) {
+            all.add(findById(rs.getInt("id")));
+        }
+
+        return all;
+    }
 
 
     public void update(ClientsOnLessons clientOnLesson) throws SQLException{
@@ -119,5 +133,18 @@ public class ClientsOnLessonMapper implements Mapper <ClientsOnLessons> {
     @Override
     public void clear() {
         clientsOnLessons.clear();
+    }
+
+    public boolean isOnLesson (int idUser, int idIncedent) throws SQLException {
+        String lessonSelectStatement = "SELECT id_client FROM clients_on_lessons WHERE id = ?";
+        PreparedStatement extractLessonStatement = connection.prepareStatement(lessonSelectStatement);
+        extractLessonStatement.setInt(1, idIncedent);
+        ResultSet rs = extractLessonStatement.executeQuery();
+
+        if (!rs.next()) return false;
+        int idRes = rs.getInt("id_client");
+        if(idRes == idUser)
+        return true;
+        else return false;
     }
 }

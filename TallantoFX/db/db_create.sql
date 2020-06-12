@@ -68,6 +68,7 @@ INSERT INTO USERS(name, login, status, password) VALUES ('Admin', 'admin', 'admi
 INSERT INTO USERS(name, login, status, password) VALUES ('Teacher', 'teacher', 'teacher', 'pass');
 INSERT INTO USERS(name, login, status, password) VALUES ('Client1', 'client1', 'client', 'pass');
 INSERT INTO USERS(name, login, status, password) VALUES ('Client1', 'client2', 'client','pass');
+INSERT INTO USERS(name, login, status, password) VALUES ('TestAdmin', '123', 'admin','123');
 
 
 INSERT INTO REQUESTS ( id_user, status, dates, date_of_send) VALUES (2, 'CLOSED', 'ПН % ВТ % СР','2020-5-31');
@@ -78,7 +79,7 @@ INSERT INTO REQUESTS ( id_user, status, dates, date_of_send) VALUES (4, 'NEW', '
 INSERT INTO LESSONS (id_teacher, theme, commentary, status, date_of_lesson) VALUES (2, 'Тема', 'Комментарий', 'OPEN', '2020-6-10');
 
 
-INSERT INTO CLIENTS_ON_LESSONS ( id_client,id_lesson,status) VALUES (2,1,'Планирует посетить');
+INSERT INTO CLIENTS_ON_LESSONS ( id_client,id_lesson,status) VALUES (3,1,'Планирует посетить');
 
 INSERT INTO COMPLAINTS (id_incedent,theme,text) VALUES (1, 'vse', 'norm');
 
