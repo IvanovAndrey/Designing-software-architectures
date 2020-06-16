@@ -7,51 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="added lessons">
-      <change afterPath="$PROJECT_DIR$/src/main/com/spbstu/exceptions/EmptyFieldException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/spbstu/exceptions/IncorrectIdIncedentException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/spbstu/exceptions/LessonIsAlreadyExistException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/spbstu/exceptions/StatusExeption.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/BusinessLogicTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db_create.sql" beforeDir="false" afterPath="$PROJECT_DIR$/db/db_create.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/ClientOnLessonPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/ClientOnLessonPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/LessonPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/LessonPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/complaintPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/complaintPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/createLessonPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/createLessonPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/notificationAdminPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/notificationAdminPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/registrationPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/registrationPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/requestPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/controller/requestPageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/facade/Facade.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/facade/Facade.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/facade/FacadeImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/facade/FacadeImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/project/Complaint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/project/Complaint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/project/Lesson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/project/Lesson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/StorageRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/StorageRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/project/ClientsOnLessonMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/project/ClientsOnLessonMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/project/ComplaintMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/project/ComplaintMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/project/LessonMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/storage/project/LessonMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/user/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/user/UserInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TallantoFX/main/com/spbstu/user/UserInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/TallantoFX/BPpaymentTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/TallantoFX/StorageRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/TallantoFX/StorageRepositoryTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/ClientOnLessonPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/ClientOnLessonPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/LessonPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/LessonPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/complaintPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/complaintPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/createLessonPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/createLessonPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/notificationAdminPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/notificationAdminPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/registrationPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/registrationPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/controller/requestPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/controller/requestPageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/facade/Facade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/facade/Facade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/facade/FacadeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/facade/FacadeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/project/Complaint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/project/Complaint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/project/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/project/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/storage/StorageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/storage/StorageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/storage/project/ClientsOnLessonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/storage/project/ClientsOnLessonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/storage/project/ComplaintMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/storage/project/ComplaintMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/storage/project/LessonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/storage/project/LessonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/spbstu/user/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/spbstu/user/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/BPpaymentTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/StorageRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/StorageRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -451,6 +407,8 @@
       <workItem from="1591926669406" duration="589000" />
       <workItem from="1591987774543" duration="16607000" />
       <workItem from="1592004993269" duration="104000" />
+      <workItem from="1592049707304" duration="1734000" />
+      <workItem from="1592299739149" duration="2022000" />
     </task>
     <task id="LOCAL-00001" summary="added lessons">
       <created>1591395496620</created>
@@ -521,22 +479,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="263" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591902231235" />
-    <state width="1876" height="260" key="GridCell.Tab.0.bottom" timestamp="1592005098121">
+    <state width="1876" height="260" key="GridCell.Tab.0.bottom" timestamp="1592130852600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="260" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592005098121" />
-    <state width="1876" height="260" key="GridCell.Tab.0.center" timestamp="1592005098121">
+    <state width="1876" height="260" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1592130852600" />
+    <state width="1876" height="260" key="GridCell.Tab.0.center" timestamp="1592130852600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="260" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592005098121" />
-    <state width="1876" height="260" key="GridCell.Tab.0.left" timestamp="1592005098121">
+    <state width="1876" height="260" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1592130852600" />
+    <state width="1876" height="260" key="GridCell.Tab.0.left" timestamp="1592130852599">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="260" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592005098121" />
-    <state width="1876" height="260" key="GridCell.Tab.0.right" timestamp="1592005098121">
+    <state width="1876" height="260" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1592130852599" />
+    <state width="1876" height="260" key="GridCell.Tab.0.right" timestamp="1592130852600">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1876" height="260" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592005098121" />
+    <state width="1876" height="260" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1592130852600" />
     <state width="1876" height="254" key="GridCell.Tab.1.bottom" timestamp="1592004951228">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -561,10 +519,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1591227644244" />
-    <state x="667" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1591888984636">
+    <state x="667" y="346" key="com.intellij.ide.util.TipDialog" timestamp="1592300064076">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1591888984636" />
+    <state x="667" y="346" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1592300064076" />
     <state x="664" y="420" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1591895299618">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
