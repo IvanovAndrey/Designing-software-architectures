@@ -158,7 +158,7 @@
       <recent name="C:\Users\Maddy_juliet\Desktop\Zzz\TallantoFX\src\main\storage" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in TallantoFX">
+  <component name="RunManager" selected="Application.Main (4)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -361,8 +361,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in TallantoFX" />
         <item itemvalue="Application.Main (4)" />
+        <item itemvalue="JUnit.All in TallantoFX" />
         <item itemvalue="JUnit.BusinessLogicTest" />
         <item itemvalue="JUnit.StorageRepositoryTest" />
         <item itemvalue="JUnit.BusinessLogicTest.paymentBP" />
@@ -408,7 +408,7 @@
       <workItem from="1591987774543" duration="16607000" />
       <workItem from="1592004993269" duration="104000" />
       <workItem from="1592049707304" duration="1734000" />
-      <workItem from="1592299739149" duration="2022000" />
+      <workItem from="1592299739149" duration="3064000" />
     </task>
     <task id="LOCAL-00001" summary="added lessons">
       <created>1591395496620</created>
